@@ -1,0 +1,7 @@
+videos/*/work/
+voices/cbenv/
+voices/refs/private/
+__pycache__/
+*.log
+node_modules/
+.DS_Store
