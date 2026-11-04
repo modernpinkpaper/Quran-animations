@@ -199,7 +199,7 @@ window.renderFrame = t => {
   showSets(def.set); setLight(def.light, def.shadow); poseActors(def, S, si, t);
   // info cards
   const cdv = S.cards.find(c => t >= c.t0 && t < c.t1), card = $('card');
-  if (cdv) { if (lastCard !== cdv.id) { $('cardin').innerHTML = CARDS[cdv.id]; lastCard = cdv.id; } const u = clamp((t - cdv.t0) / 0.4), o = clamp((cdv.t1 - t) / 0.25); card.style.opacity = Math.min(u > 0 ? 1 : 0, o).toFixed(2); card.style.transform = `scale(${(0.6 + 0.4 * backOut(u)).toFixed(3)}) translateY(${(Math.sin(t * 2) * 2).toFixed(1)}px)`; } else { card.style.opacity = 0; }
+  if (cdv) { if (lastCard !== cdv.id) { $('cardin').innerHTML = CARDS[cdv.id]; lastCard = cdv.id; } const u = clamp((t - cdv.t0) / 0.4), o = clamp((cdv.t1 - t) / 0.25); card.style.top = ((cdv.id === 'pov') ? 172 : 98) + 'px'; card.style.opacity = Math.min(u > 0 ? 1 : 0, o).toFixed(2); card.style.transform = `scale(${(0.6 + 0.4 * backOut(u)).toFixed(3)}) translateY(${(Math.sin(t * 2) * 2).toFixed(1)}px)`; } else { card.style.opacity = 0; }
   // pop-up pictures (a phone, a clock) that bounce in when something is mentioned
   { const pp = (S.pops || []).filter(q => t >= q.t0 && t < q.t1).map(q => { const u = clamp((t - q.t0) / 0.35), o = clamp((q.t1 - t) / 0.2); return `<div class="pop" style="left:${q.x}px;top:${q.y + Math.sin(t * 3 + q.x) * 4}px;opacity:${o.toFixed(2)};transform:scale(${(0.2 + 0.8 * backOut(u)).toFixed(3)}) rotate(${(Math.sin(t * 2.3 + q.x) * 6).toFixed(1)}deg)">${q.e}</div>`; }).join(''); const pe = $('pops'); if (pe.dataset.k !== pp) { pe.innerHTML = pp; } }
   // PHONE CLOSE-UP: a hand holding a phone fills the frame; things on the screen appear one by one (data-f = when, as a fraction of the segment)
@@ -213,7 +213,7 @@ window.renderFrame = t => {
     } else { pv.style.opacity = 0; } }
   // KEEP FACES VISIBLE: while a card is up, shift the picture down (and widen it a little) so the characters sit in the space BELOW the card and ABOVE the caption
   const cardOp = parseFloat(card.style.opacity || 0) || 0, cardH = cdv ? $('cardin').offsetHeight : 0;
-  const lo = 98 + cardH + 14, hi = 826, shiftPx = cdv ? Math.max(0, (lo + hi) / 2 - H / 2) * cardOp : 0, widen = 1 + (cdv ? 0.38 * cardOp : 0);
+  const cardTop = (cdv && cdv.id === 'pov') ? 172 : 98, lo = cardTop + cardH + 14, hi = 826, shiftPx = cdv ? Math.max(0, (lo + hi) / 2 - H / 2) * cardOp : 0, widen = 1 + (cdv ? 0.38 * cardOp : 0);
   { const cc = evalCam(cd, sh.u, t, sh.st, sh.i === 0); cc.fov = 2 * Math.atan(Math.tan(cc.fov * Math.PI / 360) * widen) * 180 / Math.PI; applyCam(cc, W / H, yaw); if (shiftPx > 0.5) camera.setViewOffset(W, H, 0, -shiftPx, W, H); else camera.clearViewOffset(); }
   renderer.setScissorTest(false); renderer.setViewport(0, 0, W, H); renderer.render(scene, camera);
   cv.style.filter = blur > 0.3 ? `blur(${blur.toFixed(1)}px)` : 'none'; $('flash').style.opacity = flash.toFixed(3);

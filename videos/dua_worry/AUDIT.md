@@ -1,0 +1,9 @@
+# Rule audit: "One dua for when you worry" (script type 3: everyday situation + a dua). Audience: GENERAL (Dalia said no ADHD-moms video yet).
+- Formula: POV on frame 0 ("It's 2 AM and you're worried about money"), what most people do (check the bank app again, scroll the news again; pictures pop up), the verse on a phone close-up (Al-Imran 3:173, the dua highlighted, the meaning word by word), the dua to COPY (Arabic, English letters, meaning), "ALSO SAY IT WHEN..." (3 other moments), "try it today". Length 55 s. Header on frame 0: "1 dua for when you worry".
+- Quran only, no hadith, no rulings, no music. Arabic copied BY CODE from the Uthmani text (verse_3_173_uthmani.txt), and `tools/arabic_source_check.py` says: all shown Arabic is in the Quran source.
+- Lint gate: 0 errors (3 soft warnings kept). Lines check: all English lines match the script (two Arabic-word lines read oddly to the English recognizer: expected).
+- STRICT Arabic check (tools/ar_cover.py): surah name 1.00, Amina's dua 0.97 (end 0.88), Dalia's dua 0.97 (end 0.88).
+- Audio check passes. Movement report passes (Dalia 9 poses, 10 faces; two still stretches just over 4 s, under the limit).
+- Fit sheet and frames looked at: a face is visible under every card, no eye-roll face, the POV card sits below the header, the pictures stay off her face, the phone verse has no caption over it.
+- Fixed along the way: the render files pointed at the old folder (first render made no frames); the POV card overlapped the header; the pop-up pictures sat on her face; one emoji did not show; the camera pulled back too far under the last card.
+- Limits: Dalia is the only character on screen (Amina is the voice-over). NOT checked: how the voices SOUND (nobody here can hear) and Arabic pronunciation (computer voices, not tajweed): a person must listen.
