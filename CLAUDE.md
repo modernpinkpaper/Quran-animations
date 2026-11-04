@@ -11,6 +11,9 @@ This repo makes short vertical (9:16) Quran teaching videos with the emotional r
 3. **Everyday situation + a dua**: "POV: you're ___", the usual way people handle it, then a Quran dua to copy, then "also say it when...". Not made yet.
 The **long lesson** (`videos/quran_calm/`, `near/`, `ease/`, `change/`) is RETIRED (too long); keep them as references only. Every video: 45 to 75 seconds, bite-sized.
 
+## AUDIENCE: ALWAYS ASK (Dalia's rule)
+Before making a video, ask whether it is for the **general audience** (people who want to strengthen their faith) or for **moms with ADHD** (a planned series: busy, overwhelmed, forgetting, no routine, not taking care of herself; the same Quran-only rules, a kind lived-in tone, never medical advice or a claim that the Quran treats ADHD). If Dalia already said which, do not ask. If she did not say, ask in the same short message as the other missing items. Right now only the general audience is being made; the ADHD-moms series is not started (no folder yet, no videos).
+
 ## Content rules (never break)
 - **Quran only. No hadith. No rulings** (we are not scholars). If a correction has no Quran verse behind it, tell Dalia and skip it or teach only what the verse says.
 - **Arabic shown on screen is copied by code** from the Uthmani text (`https://api.alquran.cloud/v1/ayah/<surah>:<ayah>/quran-uthmani`), never typed or remembered. Then run `python3 tools/arabic_source_check.py videos/<name>/cards.js <ref> ...`.
