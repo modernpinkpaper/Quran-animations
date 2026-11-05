@@ -74,3 +74,11 @@ This repository is **public**. A recording of a real person's voice (and any sam
 
 ## Short sentences and bad takes
 Very short sentences (1 to 2 words, like "Near.") often come out garbled with the cloned voices. Write them as a longer sentence ("It means near."). `human_tts.py` now makes up to 5 tries for short lines and keeps the BEST take (not the last). Always run `voices/cbenv/bin/python -I tools/lines_check.py videos/<name>` after making the voices: it compares every line with the script. If you edit a line, delete `work/l<NN>.wav` and `work/raw/l<NN>.wav` before running `build_audio.py` again.
+
+## Voices chosen by Dalia (latest)
+- **DALIA**: the casual voice (style `casual`): quicker, a little higher, relaxed like a friend. (The older plain Dalia voice is the same sample without a style.)
+- **AMINA**: now SARA's voice (made from Dalia's and her sister's own recordings, brightened, comforting). The sample is `voices/refs/private/amina.wav` (git-ignored, private). Where that file is missing the old public Amina sample is used.
+- **SARA**: the same sample, brisker (style `clear_clone`), for a friend in a role-play.
+- **REEM**: the second voice from the recordings, NOT brightened (style `reem_plain`). Sample `voices/refs/private/reem.wav`.
+- **NOOR**: the OLD Amina voice (Kokoro sample, `comforting`), saved for another character.
+- Voices made from compressed phone or video recordings come out muffled (little top end) and carry the recording's room noise. Brighten them (the `clear_clone` EQ) or, better, record a clean 20 seconds in a quiet room close to the mic.

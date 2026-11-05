@@ -8,7 +8,7 @@ import sys, os, json, wave, subprocess, tempfile
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE); sys.path.insert(0, ROOT + '/formats/podcast/pod')
 HUMANS = {'DALIA', 'AMINA', 'MARCUS', 'LILY', 'SOFIA', 'GRANDPA', 'KID_BOY', 'KID_GIRL', 'NARRATOR',
-          'MARA', 'THEO', 'PRIYA', 'JUNE', 'KAI', 'GUS', 'ZOE', 'FINN', 'HANA', 'NINA', 'SARA', 'REEM'}   # incl. the Emotional Robots characters
+          'MARA', 'THEO', 'PRIYA', 'JUNE', 'KAI', 'GUS', 'ZOE', 'FINN', 'HANA', 'NINA', 'SARA', 'REEM', 'NOOR'}   # incl. the Emotional Robots characters
 # Any line may carry "voice": "MARCUS" to speak with another character's voice (mix and match).
 
 def _piper(rows):

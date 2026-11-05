@@ -43,6 +43,10 @@ STYLES = {
     'natural': dict(speed_mul=1.0, pitch_add=0.0, exag_add=0.06, cfg_add=-0.05, pause_scale=1.0, joint=True, temperature=0.9, room=0.12, eq=""),
     # DALIA's voice (Dalia's pick after a listening test): quicker, a little higher, livelier, relaxed like a friend talking
     'casual': dict(speed_mul=1.12, pitch_add=0.5, exag_add=0.1, cfg_add=-0.05, pause_scale=1.0, joint=True, temperature=0.9, room=0.12, eq=""),
+    # AMINA now speaks with SARA's voice (from the family recordings, brightened), comforting: a touch slower and lower, warm
+    'amina_clone': dict(speed_mul=0.95, pitch_add=-0.2, exag_add=0.08, cfg_add=-0.05, pause_scale=1.0, joint=True, temperature=0.9, room=0.13, eq="equalizer=f=2800:t=q:w=1:g=3,treble=g=10:f=3800"),
+    # REEM: the original voice B, NOT brightened (Dalia's pick)
+    'reem_plain': dict(speed_mul=1.05, pitch_add=0.0, exag_add=0.06, cfg_add=-0.05, pause_scale=1.0, joint=True, temperature=0.9, room=0.12, eq=""),
     # for voices cloned from a compressed phone or video recording (they come out muffled): brighten the top end
     'clear_clone': dict(speed_mul=1.05, pitch_add=0.0, exag_add=0.06, cfg_add=-0.05, pause_scale=1.0, joint=True, temperature=0.9, room=0.12, eq="equalizer=f=2800:t=q:w=1:g=3,treble=g=10:f=3800"),
     # bright and friendly, for a younger or livelier person
@@ -53,8 +57,11 @@ PEOPLE = {
     'DALIA':    dict(ref='dalia',    pitch=0.0,  speed=1.00, style='casual'),   # the casual voice Dalia chose (the older plain Dalia voice is style=None)
     # SARA and REEM: voices made from Dalia's and her sister's own recordings. The samples are ONLY in voices/refs/private/ (git-ignored, private repo); if they are missing on a computer these two cannot speak.
     'SARA':     dict(ref='sara',     pitch=0.0,  speed=1.00, style='clear_clone'),
-    'REEM':     dict(ref='reem',     pitch=0.0,  speed=1.00, style='clear_clone'),
-    'AMINA':    dict(ref='amina',    pitch=0.0,  speed=0.98, style='comforting'),   # sample = a natural voice (Kokoro af_heart, expressive reading), not Piper; style = clear but comforting
+    'REEM':     dict(ref='reem',     pitch=0.0,  speed=1.00, style='reem_plain'),
+    # AMINA = SARA's voice (Dalia's pick). On THIS computer voices/refs/private/amina.wav is that voice (git-ignored). The public voices/refs/amina.wav is the OLD Amina voice, kept as the fallback where the private file is missing.
+    'AMINA':    dict(ref='amina',    pitch=0.0,  speed=1.00, style='amina_clone'),
+    # NOOR = the old Amina voice (Kokoro af_heart sample, comforting), saved for another character
+    'NOOR':     dict(ref='noor',     pitch=0.0,  speed=0.98, style='comforting'),
     'MARCUS':   dict(ref='marcus',   pitch=-1.0, speed=0.98),
     'LILY':     dict(ref='lily',     pitch=1.0,  speed=1.04),
     'SOFIA':    dict(ref='sofia',    pitch=0.0,  speed=1.02),
