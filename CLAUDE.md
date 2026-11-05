@@ -8,7 +8,8 @@ This repo makes short vertical (9:16) Quran teaching videos with the emotional r
 ## The three script types (Dalia's approved rotation; the verse picks the type; names, not numbers)
 1. **Short fix**: Dalia says her problem out loud, then the verse, then ONE easy way. Reference: `videos/remember/`.
 2. **Real-life role-play with a kind correction**: friends act out a real situation, one kindly corrects the other with a verse, then one easy way. Reference: `videos/rumor/` (START FROM THIS FOLDER).
-3. **Everyday situation + a dua**: "POV: you're ___", the usual way people handle it, then a Quran dua to copy, then "also say it when...". Not made yet.
+3. **POV: everyday situation + a dua**: the situation is ACTED OUT with director-style coverage (wide, phone close-up, face reaction, the loop), never narrated; then the verse on a phone, the Quran dua to copy, "also say it when...". Reference: `videos/dua_worry/`.
+**SHOW, DON'T NARRATE** applies to every type.
 The **long lesson** (`videos/quran_calm/`, `near/`, `ease/`, `change/`) is RETIRED (too long); keep them as references only. Every video: 45 to 75 seconds, bite-sized.
 
 ## AUDIENCE: ALWAYS ASK (Dalia's rule)
