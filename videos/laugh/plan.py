@@ -4,7 +4,7 @@
 TOTAL = None
 SCENES = [
  dict(id='open', set='room', pre=0.12, post=0.4, lines=[
-   ('DALIA', "Ha! Look at this video. Dina tripped on stage!", 'laugh', 0.5),
+   ('DALIA', "Ha, look at this video. Dina tripped on stage!", 'laugh', 0.5),
    ('DALIA', "Everyone has to see this. I'm sending it to the whole class.", 'happy', 1.4),
    ('AMINA', "Whoa, what's so funny?", 'sweet', 2.6),
    ('DALIA', "Dina fell during the school play. It's hilarious.", 'laugh', 0.6),
@@ -19,7 +19,7 @@ SCENES = [
   shots=[('lowAmina', 0), ('verseZoom', 'L1'), ('aminaLow', 'L2'), ('daliaCu2', 'L3-0.1'), ('twoShot', 'L3+1.2')], cards=[], pops=[], phones=[('quran', 'L1-0.1', 'L2-0.3')]),
  dict(id='habit', set='room', pre=0.5, post=0.5, lines=[
    ('AMINA', "Here's your easy way. Don't forward it. Send her a kind message instead.", 'sweet', 0),
-   ('DALIA', "Okay. I'll tell her it was brave to get on that stage.", 'neutral', 0.5),
+   ('DALIA', "Okay. I'll send her something kind instead.", 'neutral', 0.5),
    ('DALIA', "Hey Dina, it was brave to get on that stage. You did great.", 'sweet', 3.0),
    ('AMINA', "See? One kind message can turn a hard day around.", 'sweet', 0.6)],
   shots=[('daliaMed', 0), ('aminaLow', 'L1-0.2'), ('daliaCu', 'L1+0.8'), ('daliaCu2', 'L2'), ('aminaCu', 'L3')], cards=[('copy', 'L0+2.6', 'L1')], pops=[], phones=[('kindmsg', 'L2-0.2', 'L3-0.1')]),
