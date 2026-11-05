@@ -28,3 +28,23 @@ Dalia's idea: what women can and can't do on their period; when we can and can't
 | The period | 2:222 | PARTIAL (small) | The Quran speaks about it in the context of marital relations. What about prayer and fasting is NOT in the Quran: it is from hadith. A Quran-only video would be very short and must send her to a teacher. |
 | Shortening prayer when travelling | 4:101 | PARTIAL | The verse has conditions and scholars differ. |
 | Music, birthdays | none | NOT COVERED | No Quran verse says it; do not make these in this series. |
+
+## 5. MICRO-HABITS ("small ways to improve your day"): a new script type, Dalia's idea (DRAFT, formula to be approved)
+A very short (25 to 40 s) acted-out tiny action, then text on the screen that follows a fixed formula, then a Quran verse shown in English AND Arabic and read out loud, then a small visible payoff. Not a problem-and-fix story: the viewer SEES the tiny habit first.
+**Formula (3 lines of text that appear one by one):**
+1. **ACT (0 to 8 s):** the tiny action, acted out with no explaining (a quick scene at the door, the shop, the street). Label "SMALL STEP".
+2. **ON-SCREEN TEXT:** `THE SMALL STEP: ...` / `THE VERSE: (English, then Arabic)` / `TRY IT TODAY: ...`
+3. **THE VERSE:** shown on a screen in the scene (a phone, or a wall smart display in the entryway or on the fridge) and read aloud: English first, then the Arabic phrase (short phrases only: a computer voice is not tajweed; check every Arabic word with tools/ar_cover.py; a person must listen).
+4. **PAYOFF (3 s):** a small visible result (the neighbour smiles, the cashier relaxes).
+**Smart display screen:** like the phone close-up, a close-up of a wall-mounted digital display (in the entryway, the mudroom or on the fridge) that shows the verse of the day as she leaves. Built as an overlay (no hand); a physical 3D display on the set can come later.
+**Starter ideas (Quran-only, verses checked against the Quran text):**
+| Small step | Verse | Notes |
+|---|---|---|
+| Return a greeting with a better one | 4:86 | "When you are greeted, greet back with better, or at least the same." Neighbour at the door. |
+| Say the best word | 17:53 | "Say to My servants to say what is best." Cashier, delivery driver. |
+| Speak good to people | 2:83 | the short phrase "wa qulu lin-nasi husna" (speak good to people). Very short Arabic. |
+| Walk gently | 25:63 | "The servants of the Most Merciful walk gently on the earth, and when the ignorant speak to them they say: peace." A rude driver or rude comment. |
+| Pardon and overlook one small thing before you leave | 24:22 | "Let them pardon and overlook. Would you not love that Allah forgives you?" Dishes left in the sink. |
+| Say thank you | 14:7 | "If you are grateful, I will surely give you more." Thank the driver, the cashier. |
+**Dalia's example (short sleeves, then long sleeves before leaving):** this is about covering, which is a RULING. It belongs in category 4 (CAN AND CAN'T) with its safeguards and a reviewer (24:31, 33:59), not here.
+**Length rule:** micro-habits are 25 to 40 s (the other types stay 45 to 75 s).
