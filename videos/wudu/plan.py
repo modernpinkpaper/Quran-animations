@@ -8,7 +8,7 @@ SCENES = [
    ('AMINA', "Before you start, can I share a quick reminder from the Quran?", 'sweet', 0.7),
    ('DALIA', "Sure, of course. What is it?", 'neutral', 0.5),
    ('AMINA', "I saw you come from the bathroom. Did you wash up first?", 'sweet', 0.5),
-   ('DALIA', "Oh no. I forgot to do wudu.", 'sad', 0.6),
+   ('DALIA', "Oh no. I forgot to wash up for prayer.", 'sad', 0.6),
    ('AMINA', "That's okay! It happens to everyone. Let's see what the Quran says.", 'sweet', 0.5)],
   shots=[('standWide', 0), ('standDalia', 'L0+1.4'), ('standTwo', 'L1'), ('standAmina', 'L1+3.0'), ('standDalia', 'L2'), ('standTwo', 'L3'), ('standDalia', 'L4'), ('standAmina', 'L5')], cards=[], pops=[('🚻', 40, 205, 0.2, 'L0+2.2')], phones=[]),
  dict(id='verse', set='mat', pre=0.4, post=0.5, lines=[

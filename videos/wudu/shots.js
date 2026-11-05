@@ -50,7 +50,7 @@ export const SC = {
 // the four scenes of this video: Dalia walks onto the prayer mat, Amina walks in, they talk standing (Dalia at x=0, Amina at x=5.2)
 const DW = { kf: [[0, 0, -2.0, 0, 0.55]] }, AW = { kf: [[0, 5.2, -1.8, 0, -1.0]] };
 Object.assign(SC, {
-  open:  { set: 'mat', light: 'calm', shadow: 'room', side: { DALIA: 1, AMINA: -1 }, posture: { DALIA: 0.0 }, cast: { DALIA: { kf: [[0, -10, -2.0, 0, 1.25], [1.9, 0, -2.0, 0, 0.55]], emo: 'happy' }, AMINA: { kf: [[0, 16, -1.5, 0, -1.57], [3.4, 16, -1.5, 0, -1.57], [5.8, 5.2, -1.8, 0, -1.0]], emo: 'sweet' } } },
+  open:  { set: 'mat', light: 'calm', shadow: 'room', side: { DALIA: 1, AMINA: -1 }, posture: { DALIA: 0.0 }, cast: { DALIA: { kf: [[0, -6.2, -2.0, 0, 1.25], [1.9, 0, -2.0, 0, 0.55]], emo: 'happy' }, AMINA: { kf: [[0, 16, -1.5, 0, -1.57], [3.4, 16, -1.5, 0, -1.57], [5.8, 5.2, -1.8, 0, -1.0]], emo: 'sweet' } } },
   verse: { set: 'mat', light: 'calm', shadow: 'room', side: { DALIA: 1, AMINA: -1 }, posture: { DALIA: 0.03 }, cast: { DALIA: Object.assign({}, DW, { emo: 'neutral' }), AMINA: Object.assign({}, AW, { emo: 'neutral' }) } },
   habit: { set: 'mat', light: 'calm', shadow: 'room', side: { DALIA: 1, AMINA: -1 }, posture: { DALIA: 0.0 }, cast: { DALIA: Object.assign({}, DW, { emo: 'happy' }), AMINA: Object.assign({}, AW, { emo: 'sweet' }) } },
   close: { set: 'mat', light: 'calm', shadow: 'room', side: { DALIA: 1, AMINA: -1 }, posture: { DALIA: 0.0 }, cast: { DALIA: Object.assign({}, DW, { emo: 'happy' }), AMINA: Object.assign({}, AW, { emo: 'sweet' }) } },

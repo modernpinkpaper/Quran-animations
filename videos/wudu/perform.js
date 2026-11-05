@@ -18,6 +18,7 @@ export const CUES = {
   verse: [
     // reverent while the verse is on the phone; Dalia learns and nods; "coming from the bathroom" = she recognises herself (surprised, then a small laugh)
     { who: 'AMINA', t: ['L', 0, 0], until: ['L', 3, 0], pose: 'lap', face: 'sweet' },
+    { who: 'AMINA', t: ['L', 1, 2.4], d: 1.2, nod: 0.07, tilt: 0.06 }, { who: 'AMINA', t: ['L', 2, 1.0], d: 1.2, nod: 0.07, lean: 0.03 }, { who: 'AMINA', t: ['L', 2, 3.0], d: 1.4, tilt: 0.1, face: 'proud' },
     { who: 'DALIA', t: ['L', 0, 0.3], until: ['L', 3, 0], face: 'neutral', look: [0.5, 0.1], tilt: 0.06 },
     { who: 'DALIA', t: ['L', 1, 2.0], d: 1.4, nod: 0.08, lean: 0.03 }, { who: 'DALIA', t: ['L', 2, 1.6], d: 1.4, nod: 0.08, lean: 0.03 },
     { who: 'DALIA', t: ['L', 3, 0.4], d: 2.2, face: 'surprised', pose: 'point', lean: 0.04 },
