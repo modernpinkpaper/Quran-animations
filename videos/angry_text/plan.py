@@ -12,7 +12,7 @@ SCENES = [
   shots=[('twoShot', 0), ('daliaCu2', 'L0+3.2'), ('daliaCu', 'L1'), ('aminaCuS', 'L2'), ('daliaCu2', 'L3'), ('pushAminaS', 'L4')], cards=[], pops=[],
   phones=[('msg', 0.5, 'L0+3.0'), ('draft', 'L1-0.2', 'L1+3.4')]),
  dict(id='verse', set='room', pre=0.5, post=0.5, lines=[
-   ('AMINA', 'Fussilat. This is verse number thirty-four.', 'neutral', 0, '{ar:سُورَةُ فُصِّلَتْ}. This is verse number thirty-four.'),
+   ('AMINA', "Chapter forty-one, verse thirty-four. Let's read it together.", 'neutral', 0),
    ('AMINA', "Good and bad are not the same. Answer bad with what is better.", 'sweet', 0.4),
    ('AMINA', "And the one who was against you can become like a close friend.", 'sweet', 0.5),
    ('DALIA', "Even after what she wrote?", 'worried', 0.6)],
