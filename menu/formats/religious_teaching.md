@@ -86,3 +86,8 @@ First frame must already move; one short line in 1 to 3 s; name a feeling or ope
 
 ## Pipeline
 Copy `videos/quran_calm/` (plan.py, build_audio.py, shots.js, sets.js, cards.js, index.html, render.js, make_video.sh). Brief first (`menu/BRIEF.md`), gate (`tools/lint_dialogue.py plan.py --format story`), voices, test frames, render in the background, fit sheet (`tools/fit_sheet.py`), then say honestly what was checked and what could not be (audio).
+
+## Reference video for each type (copy with `tools/new_video.sh`)
+- Type 1 short fix: `videos/remember/`. Type 2 kind correction: `videos/rumor/` (phone chat) and `videos/wudu/` (two people standing and walking on a prayer mat, a bathroom sign pop, a checklist phone, four-word steps card). Type 3 POV + dua: `videos/dua_worry/` (acted-out opening with phone close-ups, the dua card, the "ALSO SAY IT WHEN" card).
+## Sensitive topics (correcting how someone worships)
+Warm, never scolding (Amina asks "can I share a quick reminder from the Quran?"). Say ONLY what the verse says. No rulings. The last line sends details to "a teacher you trust". Tell Dalia to have someone she trusts check the message before posting.

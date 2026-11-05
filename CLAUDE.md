@@ -13,7 +13,7 @@ This repo makes short vertical (9:16) Quran teaching videos with the emotional r
 The **long lesson** (`videos/quran_calm/`, `near/`, `ease/`, `change/`) is RETIRED (too long); keep them as references only. Every video: 45 to 75 seconds, bite-sized.
 
 ## AUDIENCE: ALWAYS ASK (Dalia's rule)
-Before making a video, ask whether it is for the **general audience** (people who want to strengthen their faith) or for **moms with ADHD** (a planned series: busy, overwhelmed, forgetting, no routine, not taking care of herself; the same Quran-only rules, a kind lived-in tone, never medical advice or a claim that the Quran treats ADHD). If Dalia already said which, do not ask. If she did not say, ask in the same short message as the other missing items. Right now only the general audience is being made; the ADHD-moms series is not started (no folder yet, no videos).
+Before making a video, ask whether it is for the **general audience** (people who want to strengthen their faith) or for **moms with ADHD** (a planned series: busy, overwhelmed, forgetting, no routine, not taking care of herself; the same Quran-only rules, a kind lived-in tone, never medical advice or a claim that the Quran treats ADHD). If Dalia already said which, do not ask. If she did not say, ask in the same short message as the other missing items. Guides: `menu/audiences/general.md` and `menu/audiences/adhd_moms.md` (a DRAFT; read it for the tone, the safe-language rules and the struggle/verse/tiny-fix table). ADHD-moms videos go in `videos/adhd_<name>/` (flat names, so relative paths keep working).
 
 ## Content rules (never break)
 - **Quran only. No hadith. No rulings** (we are not scholars). If a correction has no Quran verse behind it, tell Dalia and skip it or teach only what the verse says.
@@ -24,7 +24,7 @@ Before making a video, ask whether it is for the **general audience** (people wh
 - Her own voice recordings must never be used or stored. A real person's voice goes only in `voices/refs/private/` (git-ignored).
 
 ## How to make a video (in order)
-1. Brief (`menu/BRIEF.md`): topic and verse, script type, length. Copy `videos/rumor/` to `videos/<name>/`.
+1. Brief (`menu/BRIEF.md`): audience, topic and verse, script type, length. Then `tools/new_video.sh <name> <template>` (templates: `remember` = short fix, `rumor` = role-play, `wudu` = two people standing/walking on a mat, `dua_worry` = POV + dua). It copies the folder with every path renamed.
 2. Write `plan.py` (lines, shots, cards, phones), `cards.js` (cards and phone screens), `perform.js` (acting). Lint: `python3 tools/lint_dialogue.py videos/<name>/plan.py`.
 3. Voices (slow, run ONE job at a time or the machine runs out of memory): `export CHATTERBOX_PY=$(pwd)/voices/cbenv/bin/python AR_TRIES=8; python3 videos/<name>/build_audio.py` (set up once with `voices/setup_chatterbox.sh`). It is resumable: it only makes missing lines. If you change a line, delete `work/l<NN>.wav` AND `work/raw/l<NN>.wav` and its `work/s<NN>_*.wav`.
 4. Check the voices: `voices/cbenv/bin/python -I tools/lines_check.py videos/<name>` (every line vs the script) and `tools/ar_cover.py` on the Arabic. Never write 1 or 2 word English sentences for the cloned voices (they come out garbled).
@@ -36,3 +36,18 @@ Before making a video, ask whether it is for the **general audience** (people wh
 - Camera: `camera/CAMERA.md`: moving shots, a cut every 1.5 to 3 seconds, never a static single camera.
 - Voices: ALWAYS `voices/speak.py` (Chatterbox): AMINA style `comforting`, DALIA regular. Read `voices/README.md`.
 - Dialogue and acting rules: `formats/reaction/REACTOR_VOICE.md` and `BEHAVIOR.md`.
+
+## Voices now (Dalia's picks)
+DALIA = the casual voice (quicker, relaxed). AMINA = Sara's voice (from Dalia's and her sister's own recordings, brightened, comforting). SARA = the same voice, brisker. REEM = the second recording voice, not brightened. NOOR = the old Amina voice, saved for another character. The recording voices (amina, sara, reem) live ONLY in `voices/refs/private/` (git-ignored, never commit them); if this machine is reset, Dalia must send the mp3 again. See `voices/README.md`.
+
+## Known pitfalls (learned the hard way: read before every video)
+- Copy templates with `tools/new_video.sh`, never by hand (render files kept pointing at the old folder).
+- Run ONE voice job at a time; two at once ran the machine out of memory. A restarted container loses background jobs: `build_audio.py` is resumable, just run it again. Start `python3 -m http.server 8766` (repo root) again before rendering or the movement report.
+- English voice + transliterated Arabic words: it guesses ("wudu" came out as "voodoo"). A single short Arabic word through the Arabic voice also fails ("wudu", "ma'a" scored low). Reword to avoid the word, or use a phrase of 3+ words. Always check `tools/lines_check.py` (it now flags any single wrong word) and `tools/ar_cover.py`.
+- 1 or 2 word English sentences are garbled by the cloned voices. Join them ("It means near.").
+- Phone close-ups must last at least 3 s; hide the caption while the phone shows the same words; pop-up pictures go in the upper corners (not on her face); a card must not cover a face (the camera shifts below it).
+- Never type Arabic from memory (the marks come out in a different order). Copy by code from the Uthmani text.
+- The first frame must have a character in it and the header; no exact money; no real names.
+- Corrections about worship (wudu, prayer): warm tone, only what the verse says, no rulings, "ask a teacher you trust" at the end.
+- Changing a line: delete its `work/l<NN>.wav`, `work/raw/l<NN>.wav` and `work/s<NN>_*.wav`, then run `build_audio.py` (or `--notts` to only rebuild the timeline). After a re-render of only some seconds, delete just those frames and re-render the range, then join again (render.js skips frames that exist).
+- Always send Dalia an honest list: what was checked and what could not be (you cannot hear audio).
