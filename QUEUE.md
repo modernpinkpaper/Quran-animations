@@ -7,5 +7,5 @@ Audience for all: GENERAL. Script type for all: real-life role-play with a kind 
 | 2 | feed | the perfect feed | Ta-Ha 20:131 + Al-Kahf 18:39 | say "ma sha Allah, la quwwata illa billah", wish them well, phone down | IN PROGRESS (voices) |
 | 3 | laugh | laughing at someone's embarrassing video and about to forward it | Al-Hujurat 49:11 | do not forward; send her a kind message | PREPARED (script, cards, acting written; waits for the voice slot) |
 | 4 | cart | the midnight shopping cart | Al-A'raf 7:31 | leave it in the cart for 24 hours | PREPARED (script, cards, acting written; waits for the voice slot) |
-| 5 | stalk | checking an old friend's profile again and again | Al-Hujurat 49:12 | mute it, phone face-down, do one thing with your hands | queued |
+| 5 | stalk | checking an old friend's profile again and again | Al-Hujurat 49:12 | mute it, phone face-down, do one thing with your hands | PREPARED (script, cards, acting written; waits for the voice slot) |
 | 6 | late | "I'll be there in 5", cancelling at the last minute | Al-Isra 17:34 | say "I'll try" only when unsure, put it in the calendar right away | queued |
