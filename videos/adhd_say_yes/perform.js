@@ -7,6 +7,7 @@ export const CUES = {
     { who: 'DALIA', t: ['LE', 0, 0.4], d: 1.6, face: 'neutral', pose: 'lap', slump: 0.05 },
     { who: 'DALIA', t: ['LE', 0, 3.0], until: ['L', 1, 0], face: 'shocked', pose: 'chest', slump: 0.1, lean: 0.04 },
     { who: 'DALIA', t: ['L', 1, 0], until: ['LE', 1, 0.3], face: 'scared', pose: 'shrug', slump: 0.14, tilt: -0.1 },
+    { who: 'AMINA', t: 4.0, d: 1.2, face: 'worried', tilt: 0.08, look: [-0.4, 0] }, { who: 'AMINA', t: 6.2, d: 1.2, face: 'sweet', tilt: -0.06, nod: 0.05 },
     { who: 'AMINA', t: ['L', 2, 0], d: 2.2, pose: 'open', face: 'sweet', tilt: 0.13, lean: 0.04 },
     { who: 'DALIA', t: ['L', 2, 0.6], d: 1.6, face: 'embarrassed', slump: 0.12, look: [0.2, -0.4] },
     { who: 'DALIA', t: ['L', 3, 0], until: ['LE', 3, 0.4], face: 'sad', pose: 'lap', slump: 0.15, look: [-0.2, -0.45] },
@@ -18,6 +19,7 @@ export const CUES = {
   verse: [
     // reverent: Amina is still while the verse is on the phone; Dalia listens, then the idea lands (soft, surprised, relieved)
     { who: 'AMINA', t: ['L', 0, 0], until: ['L', 3, 0], pose: 'lap', face: 'sweet' },
+    { who: 'AMINA', t: ['L', 0, 1.4], d: 1.0, tilt: 0.07, nod: 0.05 }, { who: 'AMINA', t: ['L', 1, 0.2], d: 1.2, nod: 0.06 },
     { who: 'DALIA', t: ['L', 0, 0.3], until: ['L', 2, 0], face: 'neutral', look: [0.5, 0.1], slump: 0.08 },
     { who: 'AMINA', t: ['L', 1, 2.0], d: 1.4, nod: 0.07, tilt: 0.06 },
     { who: 'DALIA', t: ['L', 2, 1.0], d: 2.0, face: 'surprised', pose: 'point', lean: 0.04, tilt: 0.08 },
