@@ -1,6 +1,6 @@
 // Info cards and phone screens for "One reminder before you pray" (script type 2: real-life role-play with a kind correction). The Arabic is copied BY CODE from the Uthmani Quran text (verse_5_6_uthmani.txt, api.alquran.cloud) and checked with tools/arabic_source_check.py. The meanings in simple English are ours (not word for word).
 export const CARDS = {
-  copy: `<div class="num">THE 4 STEPS (from the verse)</div>
+  copy: `<div class="num" style="margin-bottom:16px">THE 4 STEPS (from the verse)</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;text-align:center;margin-top:4px">
       <div><div class="ar" style="font-size:36px;line-height:1.5;margin:0">وُجُوهَكُمْ</div><div class="tr" style="font-size:20px">wujuhakum</div><div class="tip" style="margin:0;font-size:18px">1. your FACE</div></div>
       <div><div class="ar" style="font-size:36px;line-height:1.5;margin:0">وَأَيْدِيَكُمْ</div><div class="tr" style="font-size:20px">aydiyakum</div><div class="tip" style="margin:0;font-size:18px">2. your ARMS to the elbows</div></div>
