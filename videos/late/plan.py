@@ -22,7 +22,7 @@ SCENES = [
    ('DALIA', "Okay. I'll try, and I'll add it to my calendar.", 'neutral', 0.5),
    ('DALIA', "That way, my yes will always mean yes.", 'happy', 3.0),
    ('AMINA', "And your friends will always trust it.", 'sweet', 0.6)],
-  shots=[('daliaMed', 0), ('aminaLow', 'L1-0.2'), ('daliaCu', 'L1+0.8'), ('daliaCu2', 'L2'), ('aminaCu', 'L3')], cards=[('copy', 'L0+3.8', 'L1')], pops=[], phones=[('cal', 'L1+0.4', 'L2-0.1')]),
+  shots=[('daliaMed', 0), ('aminaLow', 'L1-0.2'), ('daliaCu', 'L1+0.8'), ('daliaCu2', 'L2'), ('aminaCu', 'L3')], cards=[('copy', 'L0+3.8', 'L1+1.4')], pops=[], phones=[('cal', 'L1+0.4', 'L2-0.1')]),
  dict(id='close', set='room', pre=0.6, post=1.6, lines=[
    ('AMINA', "Try it this week, before your next yes.", 'sweet', 0),
    ('DALIA', "Okay. Only a real yes from now on.", 'happy', 0.6)],

@@ -22,7 +22,7 @@ SCENES = [
    ('DALIA', "Okay. If I still need it tomorrow, I'll buy it.", 'neutral', 0.5),
    ('DALIA', "That feels so much calmer already.", 'happy', 3.0),
    ('AMINA', "And the deal will probably come back anyway.", 'sweet', 0.6)],
-  shots=[('daliaMed', 0), ('aminaLow', 'L1-0.2'), ('daliaCu', 'L1+0.8'), ('daliaCu2', 'L2'), ('aminaCu', 'L3')], cards=[('copy', 'L0+2.4', 'L1')], pops=[], phones=[('wait', 'L1+0.6', 'L2-0.1')]),
+  shots=[('daliaMed', 0), ('aminaLow', 'L1-0.2'), ('daliaCu', 'L1+0.8'), ('daliaCu2', 'L2'), ('aminaCu', 'L3')], cards=[('copy', 'L0+2.4', 'L1+1.4')], pops=[], phones=[('wait', 'L1+0.6', 'L2-0.1')]),
  dict(id='close', set='room', pre=0.6, post=1.6, lines=[
    ('AMINA', "Try it this week, before your next checkout.", 'sweet', 0),
    ('DALIA', "Okay. Cart first, then sleep, then decide.", 'happy', 0.6)],
