@@ -12,12 +12,16 @@ norm = lambda t: [w.strip("'") for w in re.sub(r"[^a-z' ]", '', t.lower().replac
 AR = re.compile(r'\{ar:[^}]*\}'); bad = []
 flat = [l for s in plan.SCENES for l in s['lines']]
 import difflib as _dl
+import os as _os
+IGNORE = set()   # words that are fine however the recognizer spells them (names like Dina): videos/<name>/lines_ignore.txt, one word per line
+try: IGNORE = {l.strip().lower() for l in open(_os.path.join(d, 'lines_ignore.txt'), encoding='utf-8') if l.strip()}
+except OSError: pass
 def missing_words(want, heard):
     """words of the script (4+ letters) that were NOT heard (not even close): the overall match can stay high (0.86) while one important word is wrong, like 'wudu' heard as 'voodoo'"""
     hw = norm(heard); out = []; digits = any(c.isdigit() for c in heard)
     NUM = set('one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty thirty forty fifty sixty seventy eighty ninety hundred first second third'.split())
     for w in norm(want):
-        if len(w) < 4 or (digits and w in NUM): continue   # the recognizer writes numbers as digits
+        if len(w) < 4 or (digits and w in NUM) or w in IGNORE: continue   # the recognizer writes numbers as digits
         need = 0.99 if len(w) <= 5 else 0.8   # short words must match EXACTLY ('send' heard as 'end' is a wrong word)
         if not any(_dl.SequenceMatcher(None, w, h).ratio() >= need for h in hw):
             out.append((w, max(hw, key=lambda h: _dl.SequenceMatcher(None, w, h).ratio()) if hw else ''))
