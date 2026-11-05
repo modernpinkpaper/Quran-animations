@@ -24,15 +24,14 @@ export const CUES = {
     { who: 'AMINA', t: ['L', 3, 0.6], until: ['E', 0], pose: 'open', face: 'giggle', tilt: 0.1, act: 'nod' },
   ],
   habit: [
-    // the easy way: Dalia tries the phrase (nervous smile, hand on heart), wishes them well, and the weight lifts
-    { who: 'AMINA', t: ['L', 0, 0.2], d: 3.0, pose: 'open', face: 'sweet', tilt: 0.1 },
-    { who: 'AMINA', t: ['L', 0, 4.2], d: 2.0, pose: 'point', face: 'happy', nod: 0.05 },
-    { who: 'DALIA', t: ['L', 0, 0.4], d: 3.4, face: 'neutral', pose: 'lap', slump: 0.05 },
-    { who: 'AMINA', t: ['L', 1, 0.2], d: 2.4, pose: 'chest', face: 'sweet', tilt: 0.1 },
-    { who: 'DALIA', t: ['L', 2, 0], until: ['LE', 2, 0.3], pose: 'chest', face: 'relieved', nod: 0.08, lean: 0.04 },
-    { who: 'DALIA', t: ['L', 3, 0], until: ['LE', 3, 0.3], pose: 'hips', face: 'nervous smile', slump: 0.0, lean: 0.04 },
-    { who: 'AMINA', t: ['L', 4, 0], until: ['E', 0], pose: 'open', face: 'proud', tilt: 0.1 },
-    { who: 'DALIA', t: ['L', 4, 0.5], until: ['E', 0], pose: 'lap', face: 'big smile', slump: 0.0 },
+    // the easy way: Amina is warm and points at the key step; Dalia tries it (a calm breath, then a small nervous smile), and the weight lifts
+    { who: 'AMINA', t: ['L', 0, 0.2], d: 2.8, pose: 'open', face: 'sweet', tilt: 0.1 },
+    { who: 'AMINA', t: ['L', 0, 3.6], d: 2.0, pose: 'point', face: 'happy', nod: 0.05 },
+    { who: 'DALIA', t: ['L', 0, 0.4], d: 3.2, face: 'neutral', pose: 'lap', slump: 0.04 },
+    { who: 'DALIA', t: ['L', 1, 0], until: ['LE', 1, 0.3], pose: 'lap', face: 'relieved', slump: 0.02, nod: 0.06 },
+    { who: 'DALIA', t: ['L', 2, 0], until: ['LE', 2, 0.3], pose: 'chest', face: 'nervous smile', nod: 0.08, lean: 0.04 },
+    { who: 'AMINA', t: ['L', 3, 0], until: ['E', 0], pose: 'open', face: 'proud', tilt: 0.1 },
+    { who: 'DALIA', t: ['L', 3, 0.5], until: ['E', 0], pose: 'hips', face: 'big smile', slump: 0.0 },
   ],
   close: [
     { who: 'AMINA', t: ['L', 0, 0], d: 2.4, pose: 'open', face: 'in love', tilt: 0.1, lean: 0.05 },
