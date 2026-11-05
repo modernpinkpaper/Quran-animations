@@ -4,12 +4,14 @@
 # No 1 or 2 word English sentences for the cloned voices.
 TOTAL = None
 SCENES = [
- dict(id='open', set='bed', vo=True, pre=0.12, post=0.5, lines=[
-   ('AMINA', "It's two in the morning, and you're worried about money.", 'sweet', 0),
-   ('AMINA', "So you check your bank app. Again. Then you scroll the news. Again.", 'neutral', 0.5),
-   ('AMINA', "Does it help? Not really. But there is something better to say.", 'sweet', 0.7)],
-  shots=[('bedPush', 0), ('bedCu', 'L1'), ('bedWide', 'L1+3.6'), ('bedCu', 'L2')],
-  cards=[('pov', 0.0, 'L0+3.4')], pops=[('📱', 392, 175, 'L1', 'L1+2.8'), ('💸', 28, 205, 'L1+0.9', 'L1+3.6'), ('📰', 392, 290, 'L1+2.4', 'L1+5.4')], phones=[]),
+ dict(id='open', set='bed', pre=0.12, post=0.5, lines=[
+   ('DALIA', "Rent is due in three days.", 'sad', 0.5),
+   ('DALIA', "And the news says prices are going up again.", 'worried', 1.6),
+   ('AMINA', "Checking again won't help. Here's something better to say.", 'sweet', 4.6)],
+  # ACTED OUT (not narrated): wide in the dark bedroom, her phone screen (bank alerts), her face, the news on the phone, the bank app AGAIN (same alert), then she gives up and Amina speaks
+  shots=[('bedWide', 0), ('bedCu', 'L0+2.2'), ('bedPush', 'L1+0.2'), ('bedCu', 'L1+3.6'), ('bedWide', 'L2-0.4'), ('bedCu', 'L2+1.0')],
+  cards=[], pops=[],
+  phones=[('bank', 1.0, 'L0+2.4'), ('news', 'L1-0.3', 'L1+3.1'), ('again', 'L1+3.9', 'L2-0.3')]),
  dict(id='verse', set='bed', vo=True, pre=0.4, post=0.6, lines=[
    ('AMINA', 'Al-Imran. This is verse number one seventy-three.', 'neutral', 0, '{ar:سُورَةُ آلِ عِمْرَانَ}. This is verse number one seventy-three.'),
    ('AMINA', "People told them: be afraid. It only made their faith stronger. They said: Allah is enough for us.", 'sweet', 0.5)],

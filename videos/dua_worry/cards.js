@@ -11,3 +11,18 @@ export const PHONES = {
     <div class="qar" data-f="0.0"><mark>ٱلَّذِينَ قَالَ لَهُمُ ٱلنَّاسُ إِنَّ ٱلنَّاسَ قَدْ جَمَعُوا۟ لَكُمْ فَٱخْشَوْهُمْ فَزَادَهُمْ إِيمَٰنًۭا وَقَالُوا۟ <b class="key" data-f="0.55">حَسْبُنَا ٱللَّهُ وَنِعْمَ ٱلْوَكِيلُ</b></mark></div>
     <div class="qlab" data-f="0.05">SIMPLE MEANING</div><div class="qen">${qwords("People told them: be afraid! It only made their faith stronger. They said: Allah is enough for us, and He is the best protector.", 0.1, 0.9)}</div></div>`,
 };
+
+// the opening is ACTED OUT on the phone (director's coverage): lock screen with bank alerts, the news, the bank app again (the same alert). No exact money on screen.
+PHONES.bank = `<div class="lock"><div class="sb">2:07</div><div class="t">2:07</div><div class="d">Thursday night</div>
+  <div class="notif" data-f="0.12"><i>\u{1F3E6}</i><div><b>BANK</b><span>Low balance alert</span></div><small>now</small></div>
+  <div class="notif" data-f="0.38"><i>\u{1F4B3}</i><div><b>CARD</b><span>Payment due in 3 days</span></div><small>2m</small></div>
+  <div class="notif" data-f="0.62"><i>\u{1F3E0}</i><div><b>RENT</b><span>Reminder: rent is due Friday</span></div><small>5m</small></div></div>`;
+PHONES.news = `<div class="lock news"><div class="sb">2:19</div><div class="apphd" style="margin:-60px -18px 18px;padding-top:56px"><b>News</b><small>Top stories</small></div>
+  <div class="notif" data-f="0.1"><i>\u{1F4F0}</i><div><b>ECONOMY</b><span>Prices rising again this month</span></div></div>
+  <div class="notif" data-f="0.38"><i>\u{1F4C9}</i><div><b>WORK</b><span>More layoffs announced</span></div></div>
+  <div class="notif" data-f="0.64"><i>⚠️</i><div><b>WARNING</b><span>Experts expect a hard year</span></div></div></div>`;
+PHONES.again = `<div class="lock again"><div class="sb">2:41</div><div class="apphd" style="margin:-60px -18px 0;padding-top:56px"><b>Bank</b><small>My accounts</small></div>
+  <div class="bal">•••••</div>
+  <div class="spin" data-f="0.12">↻ Refreshing...</div>
+  <div class="notif" data-f="0.45" style="margin-top:26px"><i>\u{1F3E6}</i><div><b>BANK</b><span>Low balance alert</span></div><small>now</small></div>
+  <div class="again-note" data-f="0.72">Same alert as 30 minutes ago</div></div>`;
