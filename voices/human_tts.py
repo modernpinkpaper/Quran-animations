@@ -41,12 +41,19 @@ STYLES = {
                        eq="bass=g=1.8:f=190,treble=g=-1.5:f=7000"),
     # natural conversation: no extra softness, but the same fixes (whole-line speech, room sound, a lively melody)
     'natural': dict(speed_mul=1.0, pitch_add=0.0, exag_add=0.06, cfg_add=-0.05, pause_scale=1.0, joint=True, temperature=0.9, room=0.12, eq=""),
+    # DALIA's voice (Dalia's pick after a listening test): quicker, a little higher, livelier, relaxed like a friend talking
+    'casual': dict(speed_mul=1.12, pitch_add=0.5, exag_add=0.1, cfg_add=-0.05, pause_scale=1.0, joint=True, temperature=0.9, room=0.12, eq=""),
+    # for voices cloned from a compressed phone or video recording (they come out muffled): brighten the top end
+    'clear_clone': dict(speed_mul=1.05, pitch_add=0.0, exag_add=0.06, cfg_add=-0.05, pause_scale=1.0, joint=True, temperature=0.9, room=0.12, eq="equalizer=f=2800:t=q:w=1:g=3,treble=g=10:f=3800"),
     # bright and friendly, for a younger or livelier person
     'bright': dict(speed_mul=1.03, pitch_add=0.3, exag_add=0.08, cfg_add=0.0, pause_scale=0.9, eq="treble=g=1.2:f=5500"),
 }
 # One reference voice per person (voices/refs/<name>.wav) plus a base pitch and pace so each sounds different.
 PEOPLE = {
-    'DALIA':    dict(ref='dalia',    pitch=0.0,  speed=1.00),
+    'DALIA':    dict(ref='dalia',    pitch=0.0,  speed=1.00, style='casual'),   # the casual voice Dalia chose (the older plain Dalia voice is style=None)
+    # SARA and REEM: voices made from Dalia's and her sister's own recordings. The samples are ONLY in voices/refs/private/ (git-ignored, private repo); if they are missing on a computer these two cannot speak.
+    'SARA':     dict(ref='sara',     pitch=0.0,  speed=1.00, style='clear_clone'),
+    'REEM':     dict(ref='reem',     pitch=0.0,  speed=1.00, style='clear_clone'),
     'AMINA':    dict(ref='amina',    pitch=0.0,  speed=0.98, style='comforting'),   # sample = a natural voice (Kokoro af_heart, expressive reading), not Piper; style = clear but comforting
     'MARCUS':   dict(ref='marcus',   pitch=-1.0, speed=0.98),
     'LILY':     dict(ref='lily',     pitch=1.0,  speed=1.04),
