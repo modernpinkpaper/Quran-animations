@@ -25,6 +25,7 @@ export const CUES = {
     { who: 'DALIA', t: ['L', 2, 1.0], d: 2.0, face: 'surprised', pose: 'point', lean: 0.04, tilt: 0.08 },
     { who: 'AMINA', t: ['L', 2, 2.2], d: 1.8, pose: 'open', face: 'proud', tilt: 0.1 },
     { who: 'DALIA', t: ['L', 3, 0], until: ['E', 0], face: 'relieved', pose: 'chest', slump: 0.02, nod: 0.09, tilt: 0.1 },
+    { who: 'AMINA', t: ['L', 3, 0.5], d: 1.8, face: 'giggle', tilt: 0.1, act: 'nod' },
   ],
   habit: [
     // the easy way: Dalia tries the pause phrase on her phone (small nervous smile), the reply is kind, and she lights up
