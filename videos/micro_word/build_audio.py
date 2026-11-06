@@ -82,7 +82,10 @@ for si, s in enumerate(SCENES):
     st = cursor; cur = st + s['pre']; sl = []
     for li, l in enumerate(s['lines']):
         who, text, emo, gap = l[:4]
-        x = load(k) * (0.63 if who == 'MARA' else 1.0); idx = np.where(np.abs(x) > 0.02)[0]
+        x = load(k) * (0.63 if who == 'MARA' else 1.0)
+        if who == 'MARA':   # Mara's clone stops dead at the end of a line: add a short natural-sounding decay so it does not sound like a hard stop
+            seg = x[-int(0.06 * SR):]; nt = int(0.25 * SR); tail = np.tile(np.concatenate([seg[::-1], seg]), 6)[:nt] * (np.linspace(1, 0, nt) ** 2) * 0.5; x = np.concatenate([x, tail])
+        idx = np.where(np.abs(x) > 0.02)[0]
         cut = max(0, idx[0] - int(0.06 * SR)); x = x[cut:]; idx = idx - cut   # leading silence trimmed to 60 ms (a long lead made the first line start before time 0)
         lead = idx[0] / SR; tail = idx[-1] / SR
         onset = cur + gap; start = onset - lead; v1 = start + tail
