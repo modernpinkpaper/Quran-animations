@@ -30,6 +30,8 @@ export const CUES = {
     { who: 'DALIA', t: ['L', 0, 0.4], d: 3.2, face: 'neutral', pose: 'lap', slump: 0.04 },
     { who: 'DALIA', t: ['L', 1, 0], until: ['LE', 1, 0.3], pose: 'lap', face: 'relieved', slump: 0.02, nod: 0.06 },
     { who: 'DALIA', t: ['L', 2, 0], until: ['LE', 2, 0.3], pose: 'chest', face: 'nervous smile', nod: 0.08, lean: 0.04 },
+    { who: 'AMINA', t: ['L', 1, 0.3], d: 2.0, pose: 'lap', face: 'sweet', tilt: 0.1, nod: 0.06 },
+    { who: 'AMINA', t: ['L', 2, 0.2], d: 2.2, face: 'happy', tilt: -0.08, nod: 0.07, act: 'nod' },
     { who: 'AMINA', t: ['L', 3, 0], until: ['E', 0], pose: 'open', face: 'proud', tilt: 0.1 },
     { who: 'DALIA', t: ['L', 3, 0.5], until: ['E', 0], pose: 'hips', face: 'big smile', slump: 0.0 },
   ],
