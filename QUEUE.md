@@ -6,8 +6,8 @@ Audience for all: GENERAL. Script type for all: real-life role-play with a kind 
 | 1 | angry_text | the angry text | Fussilat 41:34 | the 10-second rule: pause, delete, write the kind version | DONE, sent |
 | 2 | feed | the perfect feed | Ta-Ha 20:131 + Al-Kahf 18:39 | say "ma sha Allah, la quwwata illa billah", wish them well, phone down | DONE, sent |
 | 3 | laugh | laughing at someone's embarrassing video and about to forward it | Al-Hujurat 49:11 | do not forward; send her a kind message | DONE, sent |
-| 4 | cart | the midnight shopping cart | Al-A'raf 7:31 | leave it in the cart for 24 hours | IN PROGRESS (voices) |
-| 5 | stalk | checking an old friend's profile again and again | Al-Hujurat 49:12 | mute it, phone face-down, do one thing with your hands | PREPARED (script, cards, acting written; waits for the voice slot) |
+| 4 | cart | the midnight shopping cart | Al-A'raf 7:31 | leave it in the cart for 24 hours | DONE, sent |
+| 5 | stalk | checking an old friend's profile again and again | Al-Hujurat 49:12 | mute it, phone face-down, do one thing with your hands | IN PROGRESS (voices running in lane A) |
 | 6 | late | "I'll be there in 5", cancelling at the last minute | Al-Isra 17:34 | say "I'll try" only when unsure, put it in the calendar right away | PREPARED (script, cards, acting written; waits for the voice slot) |
 
 ## After the six role-plays: MICRO-HABITS (Dalia asked for this type; formula in menu/ideas/README.md, category 5; 25 to 40 s; she can adjust the formula after seeing the first one). Audience: GENERAL.
