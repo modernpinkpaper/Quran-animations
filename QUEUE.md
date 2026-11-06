@@ -15,7 +15,7 @@ Audience for all: GENERAL. Script type for all: real-life role-play with a kind 
 |---|---|---|---|---|
 | 7 | micro_greet | return a greeting with a better one (neighbour at the door; the verse also shown on a wall smart display in the entryway) | 4:86 | DONE, sent |
 | 8 | micro_word | say the best word (cashier / delivery driver) | 17:53 | DONE, sent |
-| 9 | micro_good | speak good to people (very short Arabic phrase) | 2:83 | IN PROGRESS (voices running) |
+| 9 | micro_good | speak good to people (very short Arabic phrase) | 2:83 | DONE, sent |
 Later ideas (not queued): walk gently 25:63, pardon one small thing 24:22, say thank you 14:7. The CAN AND CAN'T category (menu/ideas/README.md, category 4) waits for Dalia's decision on the rules.
 
 ## HOW THE QUEUE KEEPS RUNNING WITHOUT DALIA (do this at EVERY wake-up)
