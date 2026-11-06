@@ -7,7 +7,8 @@ export const CUES = {
     { who: 'DALIA', t: ['L', 1, 0.3], d: 3.0, face: 'embarrassed', look: [0.4, 0.0], tilt: 0.08, slump: 0.05 },
     { who: 'DALIA', t: ['L', 2, 0], until: ['LE', 2, 0.3], face: 'sweet', pose: 'chest', lean: 0.05, nod: 0.09, tilt: 0.1 },
     { who: 'MARA', t: ['L', 2, 0.6], until: ['L', 3, 0], face: 'surprised', pose: 'lap', tilt: 0.1, nod: 0.06 },
-    { who: 'MARA', t: ['L', 3, 0], until: ['E', 0], face: 'relieved', pose: 'chest', tilt: 0.12, nod: 0.07 },
+    { who: 'MARA', t: ['L', 3, 0], d: 1.9, face: 'relieved', pose: 'chest', tilt: 0.12, nod: 0.07 },
+    { who: 'MARA', t: ['L', 3, 1.9], until: ['E', 0], face: 'big smile', pose: 'open', tilt: -0.08, nod: 0.06 },
     { who: 'DALIA', t: ['L', 3, 0.3], until: ['E', 0], face: 'proud', pose: 'hips', nod: 0.06 },
   ],
   verse: [
