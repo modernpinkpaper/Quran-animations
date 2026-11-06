@@ -13,7 +13,7 @@ Audience for all: GENERAL. Script type for all: real-life role-play with a kind 
 ## After the six role-plays: MICRO-HABITS (Dalia asked for this type; formula in menu/ideas/README.md, category 5; 25 to 40 s; she can adjust the formula after seeing the first one). Audience: GENERAL.
 | # | Folder | Small step | Verse | Status |
 |---|---|---|---|---|
-| 7 | micro_greet | return a greeting with a better one (neighbour at the door; the verse also shown on a wall smart display in the entryway) | 4:86 | queued (needs the micro-habit template + smart display overlay) |
+| 7 | micro_greet | return a greeting with a better one (neighbour at the door; the verse also shown on a wall smart display in the entryway) | 4:86 | DONE, sent |
 | 8 | micro_word | say the best word (cashier / delivery driver) | 17:53 | queued |
 | 9 | micro_good | speak good to people (very short Arabic phrase) | 2:83 | queued |
 Later ideas (not queued): walk gently 25:63, pardon one small thing 24:22, say thank you 14:7. The CAN AND CAN'T category (menu/ideas/README.md, category 4) waits for Dalia's decision on the rules.

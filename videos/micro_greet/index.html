@@ -229,7 +229,7 @@ window.renderFrame = t => {
   { const bigEnd = TL.lines[2].v0 - 0.1, k = clamp((t - bigEnd) / 0.5), box = $('hbox'), chips = [...$('hchips').children], mix = (a, b) => (a + (b - a) * k).toFixed(1);
     $('hbox').children[0].style.cssText = `opacity:${(1 - k).toFixed(2)};height:${mix(22, 0)}px;overflow:hidden`;
     $('hl2').style.fontSize = mix(44, 25) + 'px'; $('hl2').innerHTML = k > 0.5 ? '1 small step: <b>greet back better</b>' : '1 small step:<br><b>greet back better</b>';
-    chips.forEach(c => { c.style.fontSize = mix(22, 15) + 'px'; c.style.padding = mix(7, 4) + 'px ' + mix(14, 10) + 'px'; }); $('hchips').style.marginTop = mix(8, 4) + 'px'; box.style.marginTop = mix(14, 8) + 'px'; box.style.padding = `${mix(10, 6)}px ${mix(22, 16)}px ${mix(12, 8)}px`;
+    chips.forEach(c => { c.style.fontSize = mix(22, 15) + 'px'; c.style.padding = mix(7, 4) + 'px ' + mix(14, 10) + 'px'; }); $('hchips').style.marginTop = mix(8, 4) + 'px'; box.style.marginTop = mix(14, 8) + 'px'; box.style.padding = `${mix(10, 6)}px ${mix(22, 16)}px ${mix(12, 8)}px`; }
   $('fade').style.opacity = clamp((t - (TOTAL - 0.8)) / 0.7).toFixed(3);
 };
 window.renderFrame(0.5); window.ready = true;

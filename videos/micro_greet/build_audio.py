@@ -63,7 +63,7 @@ if '--notts' not in sys.argv:
             fade = int(0.012 * SR); x = x.copy(); x[:fade] *= np.linspace(0, 1, fade); chunks.append(x)
         y = np.concatenate(chunks); y = y / max(1.0, np.abs(y).max() / 0.95)
         with wave.open(fin, 'wb') as w: w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR); w.writeframes((y * 32767).astype('<i2').tobytes())
-ROOM_FOR = {'DALIA': 0.10}   # Dalia's lines have pure digital silence between sentences (only Amina's style added room sound). Fill it with the same soft room, once.
+ROOM_FOR = {'DALIA': 0.10, 'MARA': 0.10}   # Dalia's lines have pure digital silence between sentences (only Amina's style added room sound). Fill it with the same soft room, once.
 os.makedirs(WORK + '/raw', exist_ok=True)
 for i, (si, li, l) in enumerate(flat):
     say = l[4] if len(l) > 4 else l[1]; wet = ROOM_FOR.get(l[0])   # Dalia's lines (her pieces carry no room sound); Amina's pieces already have it
@@ -82,7 +82,7 @@ for si, s in enumerate(SCENES):
     st = cursor; cur = st + s['pre']; sl = []
     for li, l in enumerate(s['lines']):
         who, text, emo, gap = l[:4]
-        x = load(k); idx = np.where(np.abs(x) > 0.02)[0]
+        x = load(k) * (0.63 if who == 'MARA' else 1.0); idx = np.where(np.abs(x) > 0.02)[0]
         cut = max(0, idx[0] - int(0.06 * SR)); x = x[cut:]; idx = idx - cut   # leading silence trimmed to 60 ms (a long lead made the first line start before time 0)
         lead = idx[0] / SR; tail = idx[-1] / SR
         onset = cur + gap; start = onset - lead; v1 = start + tail
