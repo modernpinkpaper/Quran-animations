@@ -22,7 +22,7 @@ SCENES = [
    ('DALIA', "Okay, I'm muting her page and turning the phone over.", 'neutral', 0.5),
    ('DALIA', "I'll make some tea instead.", 'sweet', 3.0),
    ('AMINA', "See? Your hands are busy, and your heart can rest.", 'sweet', 0.6)],
-  shots=[('daliaMed', 0), ('aminaLow', 'L1-0.2'), ('daliaCu', 'L1+0.8'), ('daliaCu2', 'L2'), ('aminaCu', 'L3')], cards=[('copy', 'L0+3.6', 'L1+1.4')], pops=[], phones=[('mute', 'L1+0.4', 'L2-0.1')]),
+  shots=[('daliaMed', 0), ('aminaLow', 'L1-0.2'), ('daliaCu', 'L1+0.8'), ('daliaCu2', 'L2'), ('aminaCu', 'L3')], cards=[('copy', 'L0+3.6', 'L1+1.4')], pops=[], phones=[('mute', 'L1+1.5', 'L2-0.1')]),
  dict(id='close', set='room', pre=0.6, post=1.6, lines=[
    ('AMINA', "Try it this week, before you check that page again.", 'sweet', 0),
    ('DALIA', "Okay. Mute it, flip it, then make tea.", 'happy', 0.6)],

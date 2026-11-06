@@ -12,7 +12,8 @@ export const CUES = {
     { who: 'DALIA', t: ['L', 3, 0], until: ['LE', 3, 0.3], face: 'sad', pose: 'shrug', slump: 0.1, tilt: -0.08 },
     { who: 'AMINA', t: ['L', 3, 0.8], d: 2.0, face: 'worried', tilt: 0.12, lean: 0.04 },
     { who: 'AMINA', t: ['L', 4, 0], d: 3.2, pose: 'chest', face: 'sweet', tilt: 0.1 },
-    { who: 'DALIA', t: ['L', 4, 1.0], until: ['E', 0], face: 'neutral', slump: 0.06, nod: 0.06, look: [0.0, -0.3] },
+    { who: 'DALIA', t: ['L', 4, 1.0], d: 1.8, face: 'neutral', slump: 0.06, nod: 0.06, look: [0.0, -0.3] },
+    { who: 'DALIA', t: ['L', 4, 2.9], until: ['E', 0], face: 'embarrassed', pose: 'lap', slump: 0.07, tilt: 0.08, look: [0.3, -0.2] },
   ],
   verse: [
     // reverent while the verse is on the phone; "only the shine" lands: Dalia lifts a little, nods, a small smile
