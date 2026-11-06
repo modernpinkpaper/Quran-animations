@@ -8,7 +8,7 @@ SCENES = [
    ('DALIA', "Okay, keys and bag. Let's get going.", 'happy', 0.4),
    ('MARA', "Hi, Dalia. Sorry, I'm so tired. The whole day has been a mess.", 'tired', 1.2),
    ('DALIA', "That sounds really hard. You do so much, and I see it.", 'sweet', 0.5),
-   ('MARA', "Wow. Thank you. I really needed to hear that.", 'sweet', 0.4)],
+   ('MARA', "Thank you, Dalia. I really needed to hear that.", 'sweet', 0.4)],
   shots=[('entryWide', 0), ('entryDalia', 'L0+1.0'), ('entryMara', 'L1'), ('entryDalia2', 'L2'), ('entryTwo', 'L2+3.2'), ('entryMara2', 'L3')], cards=[], pops=[], phones=[]),
  dict(id='verse', set='entry', pre=0.4, post=0.4, lines=[
    ('DALIA', "Oh, today's reminder. Chapter two, verse eighty-three.", 'neutral', 0.3),
