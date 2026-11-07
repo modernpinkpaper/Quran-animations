@@ -76,7 +76,7 @@ async function takesCard(k, box) {
   const takes = await listTakes(k);
   if (!takes.length) { box.innerHTML = ''; return; }
   const trend = takes.slice(-8).map(t => Math.round(t.score * 100) + '%').join(' → ');
-  box.innerHTML = `<div class="card"><b>My takes</b><p class="mut">${takes.length} saved on this phone${takes.length > 1 ? '. Oldest to newest: ' + trend : ''}</p>${takes.slice().reverse().map(t => `<div class="row take" style="margin:8px 0"><span>${esc(fmtDate(t.t))} · <b>${Math.round(t.score * 100)}%</b></span><span><button class="alt tk" data-id="${t.id}" style="padding:8px 12px">▶</button> <button class="alt dl" data-id="${t.id}" style="padding:8px 12px">✕</button></span></div>`).join('')}<audio id="tkau" style="display:none"></audio></div>`;
+  box.innerHTML = `<div class="card"><b>My takes</b><p class="mut">${takes.length} saved on this phone (each new recording is added here)${takes.length > 1 ? '. Oldest to newest: ' + trend : ''}</p>${takes.slice().reverse().map(t => `<div class="row take" style="margin:8px 0"><span>${esc(fmtDate(t.t))} · <b>${Math.round(t.score * 100)}%</b></span><span><button class="alt tk" data-id="${t.id}" style="padding:8px 12px">▶</button> <button class="alt dl" data-id="${t.id}" style="padding:8px 12px">✕</button></span></div>`).join('')}<audio id="tkau" style="display:none"></audio></div>`;
   const au = box.querySelector('#tkau');
   box.querySelectorAll('.tk').forEach(b => b.onclick = () => { const t = takes.find(x => x.id === +b.dataset.id); if (!t || !t.blob) return; au.src = URL.createObjectURL(t.blob); au.play(); });
   box.querySelectorAll('.dl').forEach(b => b.onclick = async () => { await delTake(+b.dataset.id); takesCard(k, box); });
@@ -102,12 +102,11 @@ function home() {
   root.append(el(`<div class="row"><h1>Practice</h1><button class="alt" id="set">Settings</button></div>`));
   root.append(el(`<p class="mut">Listen, say it yourself, and see which words the program heard.</p>`));
   root.append(el('<h2>Quran</h2>'));
-  const card = el(`<div class="card"><label for="ss" style="margin-top:0">Chapter (surah)</label><select id="ss">${index.surahs.map(s => `<option value="${s.n}" ${S.pos && S.pos.s === s.n ? 'selected' : ''}>${esc(surahLabel(s.n))}</option>`).join('')}</select>
-  <div class="row" style="margin-top:12px"><button id="go" style="flex:1">${S.pos ? 'Continue' : 'Start'}</button></div>
-  <p class="mut">You practise one verse at a time, then tap Next. The list shows how many verses you finished and your average.</p></div>`);
-  const ss = card.querySelector('#ss'); if (!S.pos) ss.value = '1';
-  card.querySelector('#go').onclick = () => { const sn = +ss.value; const v = S.pos && S.pos.s === sn ? S.pos.v : firstUndone(sn); go({ name: 'surah', s: sn, v }); };
-  ss.onchange = () => { S.pos = null; card.querySelector('#go').textContent = 'Start'; };
+  const cont = S.pos ? `<button id="go" style="width:100%;margin-top:10px">Continue: ${esc(index.surahs[S.pos.s - 1].en)}, verse ${S.pos.v}</button>` : '';
+  const card = el(`<div class="card"><button class="pick" id="pick"><span>Choose a chapter or verse, search, or duas</span><span>▾</span></button>${cont}
+  <p class="mut">You practise one verse at a time, then tap Next. The menu shows what you finished and your average for each chapter.</p></div>`);
+  card.querySelector('#pick').onclick = () => openPicker();
+  const gob = card.querySelector('#go'); if (gob) gob.onclick = () => go({ name: 'surah', s: S.pos.s, v: S.pos.v });
   root.append(card);
   root.append(el('<h2>Palestinian Arabic</h2>')); root.append(el('<p class="mut">Everyday sentences.</p>'));
   for (const l of lessonsData.lessons) {
@@ -135,7 +134,7 @@ function settings() {
 // cfg: { ar (expected text), accept, audioUrl, timings (per word [start,end] ms) or null, myrefKey (own recording) , onScore(score) }
 function practice(root, cfg) {
   const A = cfg.audioUrl; const mine = cfg.myrefKey ? store.get(cfg.myrefKey, null) : null;
-  const listen = el(`<div class="card"><div class="row"><b>1. Listen</b><span class="mut">${A ? 'reciter' : 'your own recording'}</span></div><audio id="au" preload="none" style="display:none"></audio><div class="row" style="margin-top:10px"><button id="play">▶ Play</button>${A ? '' : `<button class="alt" id="mk">● ${mine ? 'Record again' : 'Record the right way'}</button>`}</div>${cfg.timings ? '<p class="mut">The words change color as the reciter says them: pink is now, green is done.</p>' : ''}${A ? '' : '<p class="mut">No recording of a Palestinian speaker is built in yet. Ask someone who speaks Palestinian to say it, and record it here once (it stays on your phone).</p>'}</div>`);
+  const listen = el(`<div class="card"><div class="row"><b>1. Listen</b><span class="mut">${A ? 'reciter' : 'your own recording'}</span></div><audio id="au" preload="none" style="display:none"></audio><div class="row" style="margin-top:10px"><button id="play">▶ Play</button>${A ? '' : `<button class="alt" id="mk">● ${mine ? 'Record again' : 'Record the right way'}</button>`}</div>${cfg.meaning ? `<div class="meaning"><b>Meaning</b><p>${esc(cfg.meaning)}</p><p class="mut">Sahih International (an English interpretation of the meaning, not the Quran itself).</p></div>` : ''}${cfg.timings ? '<p class="mut">The words change color as the reciter says them: pink is now, green is done.</p>' : ''}${A ? '' : '<p class="mut">No recording of a Palestinian speaker is built in yet. Ask someone who speaks Palestinian to say it, and record it here once (it stays on your phone).</p>'}</div>`);
   const au = listen.querySelector('#au'); const src = A || mine;
   const T = cfg.timings;
   const setWords = ms => { root.querySelectorAll('.w').forEach((n, i) => { n.classList.remove('now', 'done'); const t = T && T[i]; if (t && t[1] > 0) { if (ms >= t[1]) n.classList.add('done'); else if (ms >= t[0]) n.classList.add('now'); } }); };
@@ -145,7 +144,7 @@ function practice(root, cfg) {
   listen.querySelector('#play').onclick = () => { if (!src) { alert('There is no recording yet. Use "Record the right way" first.'); return; } if (T) setWords(-1); au.src = src; au.playbackRate = S.speed; au.preservesPitch = true; au.play(); };
   const mk = listen.querySelector('#mk'); if (mk) mk.onclick = async () => { try { if (!rec || rec.state !== 'recording') { await startRec(); mk.textContent = '■ Stop'; } else { const b = await stopRec(); store.set(cfg.myrefKey, await blobToDataUrl(b)); render(); } } catch (e) { alert('The microphone did not start: ' + e.message); } };
   root.append(listen);
-  const card = el(`<div class="card"><b>2. Say it</b><p class="mut">Find a quiet place. Say it slowly. Tap again to stop.</p><button class="rec ${recording ? 'on' : ''}" id="rb">${recording ? '■ Stop and check' : '● Record'}</button><p class="mut" id="st">${esc(busy || (workerState === 'loading' ? progressText : ''))}</p></div>`);
+  const card = el(`<div class="card"><b>2. Say it</b><p class="mut">Find a quiet place. Say it slowly. Tap again to stop. Every recording is saved with its date and time, so you can record again and compare.</p><button class="rec ${recording ? 'on' : ''}" id="rb">${recording ? '■ Stop and check' : '● Record'}</button><p class="mut" id="st">${esc(busy || (workerState === 'loading' ? progressText : ''))}</p></div>`);
   card.querySelector('#rb').onclick = async () => {
     try {
       if (!recording) { if (!params.has('stub') || params.has('mic')) await startRec(); recording = true; result = null; render(); return; }
@@ -179,26 +178,88 @@ function surahView(sd) {
   const V = sd.verses[vi - 1], st = surahStats(sn), best = S.best[key(sn, vi)];
   const root = el('<div class="withnav"></div>');
   root.append(el('<button class="back" id="b">‹ Home</button>'));
-  root.append(el(`<div class="card"><label for="sel" style="margin-top:0">Chapter</label><select id="sel">${index.surahs.map(s => `<option value="${s.n}" ${s.n === sn ? 'selected' : ''}>${esc(surahLabel(s.n))}</option>`).join('')}</select>
-    <label for="vsel">Verse</label><select id="vsel">${Array.from({ length: count }, (_, i) => { const b = S.best[key(sn, i + 1)]; return `<option value="${i + 1}" ${i + 1 === vi ? 'selected' : ''}>${b != null ? '✓ ' : ''}${i + 1}${b != null ? ' · ' + Math.round(b * 100) + '%' : ''}</option>`; }).join('')}</select>
-    <div class="row" style="margin-top:12px"><span><b>${st.done} of ${count} done</b>${st.done ? ` · average ${Math.round(st.avg * 100)}%` : ''}</span><button class="alt" id="reset">${resetArmed ? 'Tap again to clear' : 'Clear chapter'}</button></div></div>`));
+  root.append(el(`<div class="card"><div class="row"><label style="margin:0">Chapters &amp; verses</label><span class="mut" style="text-align:right"><b>${st.done} of ${count} done</b>${st.done ? ` · avg ${Math.round(st.avg * 100)}%` : ''}</span></div><button class="pick" id="pick" style="margin-top:8px"><span>${esc(meta.en)} · verse ${vi}</span><span>▾</span></button></div>`));
   const showPlain = S.plain;
   const wordsHtml = `<div class="words">${V.w.map((w, i) => `<div class="w" data-i="${i}"><span class="wa">${esc(w[0])}</span>${showPlain ? `<span class="wt">${esc(w[1])}</span>` : ''}</div>`).join('')}</div>`;
   root.append(el(`<div class="card"><div class="row"><b>${esc(meta.en)} ${sn}:${vi}</b>${best != null ? `<span class="mut">best ${Math.round(best * 100)}% <button class="alt" id="clr" style="padding:6px 10px;font-size:14px">Clear</button></span>` : ''}</div>${wordsHtml}<p class="mut" style="text-align:center"><label style="display:inline"><input type="checkbox" id="pl" ${showPlain ? 'checked' : ''}> show the sounds in English letters</label></p></div>`));
   const rid = index.reciters.some(r => r[0] === S.reciter) ? S.reciter : '6';
-  practice(root, { takeKey: key(sn, vi), ar: V.w.map(w => w[0]).join(' '), audioUrl: index.bases[rid] + pad3(sn) + pad3(vi) + '.mp3', timings: V.t[rid] || null,
+  practice(root, { takeKey: key(sn, vi), meaning: V.en, ar: V.w.map(w => w[0]).join(' '), audioUrl: index.bases[rid] + pad3(sn) + pad3(vi) + '.mp3', timings: V.t[rid] || null,
     onScore: sc => { const b = S.best[key(sn, vi)]; if (b == null || sc > b) { S.best[key(sn, vi)] = sc; saveBest(); } } });
-  root.append(el(`<div class="card"><b>Meaning</b><p>${esc(V.en)}</p><p class="mut">Sahih International (an English interpretation of the meaning, not the Quran itself).</p></div>`));
   root.append(el(`<div class="navbar"><button class="alt" id="prev" ${sn === 1 && vi === 1 ? 'disabled' : ''}>‹ Previous</button><button id="next" ${sn === 114 && vi === count ? 'disabled' : ''}>${vi === count && sn < 114 ? 'Next chapter ›' : 'Next ›'}</button></div>`));
   root.querySelector('#b').onclick = () => go({ name: 'home' });
-  root.querySelector('#sel').onchange = e => { const n = +e.target.value; go({ name: 'surah', s: n, v: firstUndone(n) }); };
-  root.querySelector('#vsel').onchange = e => go({ name: 'surah', s: sn, v: +e.target.value });
+  root.querySelector('#pick').onclick = () => openPicker();
   root.querySelector('#pl').onchange = e => { S.plain = e.target.checked; store.set('plain', S.plain); render(); };
   const clr = root.querySelector('#clr'); if (clr) clr.onclick = () => { delete S.best[key(sn, vi)]; saveBest(); result = null; render(); };
-  root.querySelector('#reset').onclick = () => { if (!resetArmed) { resetArmed = true; render(); return; } for (let v = 1; v <= count; v++) delete S.best[key(sn, v)]; saveBest(); resetArmed = false; render(); };
   const step = d => { let s = sn, v = vi + d; if (v > count) { s = sn + 1; v = 1; } else if (v < 1) { s = sn - 1; v = index.surahs[s - 1].count; } go({ name: 'surah', s, v }); };
   root.querySelector('#prev').onclick = () => step(-1); root.querySelector('#next').onclick = () => step(1);
   return root;
+}
+
+
+// ---------- the picker: chapters and verses in one menu, search the meaning, dua index ----------
+let searchData = null, duasData = null;
+async function loadExtras() { if (!searchData) searchData = await (await fetch('data/search.json')).json(); if (!duasData) duasData = await (await fetch('data/duas.json')).json(); }
+const rx = w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+function hl(text, words) { if (!words.length) return esc(text); const re = new RegExp('(' + words.map(rx).join('|') + ')', 'gi'); return text.split(re).map((p, i) => i % 2 ? '<mark>' + esc(p) + '</mark>' : esc(p)).join(''); }
+function snippet(text, words) { let i = 0; if (words.length) { const m = text.search(new RegExp(words.map(rx).join('|'), 'i')); i = Math.max(0, m - 60); } return (i > 0 ? '… ' : '') + text.slice(i, i + 230) + (i + 230 < text.length ? ' …' : ''); }
+function openPicker() {
+  const ov = el(`<div class="overlay"><div class="sheet"><div class="row" style="margin-bottom:8px"><b style="font-size:20px">Go to</b><button class="alt" id="x">Close</button></div>
+    <input id="q" type="search" placeholder="Search the meaning (patience, mercy...) or type 2:255" autocomplete="off">
+    <div class="tabs"><button class="tab on" data-t="ch">Chapters</button><button class="tab" data-t="du">Duas by need</button></div><div id="body"></div></div></div>`);
+  document.body.append(ov); document.body.style.overflow = 'hidden';
+  const body = ov.querySelector('#body'), q = ov.querySelector('#q'); let tab = 'ch', openCh = view.name === 'surah' ? view.s : null, armed = false, timer = 0;
+  const close = () => { ov.remove(); document.body.style.overflow = ''; };
+  const jump = (s, v) => { close(); go({ name: 'surah', s, v }); };
+  const curV = view.name === 'surah' ? view.v : 0, curS = view.name === 'surah' ? view.s : 0;
+  function chapters() {
+    body.innerHTML = '';
+    for (const sm of index.surahs) {
+      const st = surahStats(sm.n), row = el(`<div><button class="chhead"><span>${sm.n}. ${esc(sm.en)} <span class="mut">(‏${esc(sm.ar)}‏)‎</span></span><span class="mut">${st.done}/${sm.count}${st.done ? ' · ' + Math.round(st.avg * 100) + '%' : ''}</span></button></div>`);
+      row.querySelector('.chhead').onclick = () => { openCh = openCh === sm.n ? null : sm.n; armed = false; chapters(); const o = body.querySelector('.open'); if (o) o.scrollIntoView({ block: 'start' }); };
+      if (openCh === sm.n) {
+        row.classList.add('open');
+        const grid = el('<div class="vgrid"></div>');
+        for (let v = 1; v <= sm.count; v++) { const b = S.best[key(sm.n, v)]; const c = el(`<button class="vchip ${b != null ? 'done' : ''} ${sm.n === curS && v === curV ? 'cur' : ''}" title="${b != null ? Math.round(b * 100) + '%' : ''}">${v}${b != null ? '<br><small>' + Math.round(b * 100) + '%</small>' : ''}</button>`); c.onclick = () => jump(sm.n, v); grid.append(c); }
+        row.append(grid);
+        const acts = el(`<div class="row" style="gap:8px"><button class="alt" id="nd" style="flex:1">First verse not done</button><button class="alt" id="cl" style="flex:1">${armed ? 'Tap again to clear' : 'Clear chapter scores'}</button></div>`);
+        acts.querySelector('#nd').onclick = () => jump(sm.n, firstUndone(sm.n));
+        acts.querySelector('#cl').onclick = () => { if (!armed) { armed = true; chapters(); return; } for (let v = 1; v <= sm.count; v++) delete S.best[key(sm.n, v)]; saveBest(); armed = false; chapters(); if (view.name === 'surah') render(); };
+        row.append(acts);
+      }
+      body.append(row);
+    }
+    const o = body.querySelector('.open'); if (o && !body.dataset.scrolled) { body.dataset.scrolled = '1'; setTimeout(() => o.scrollIntoView({ block: 'start' }), 0); }
+  }
+  async function duas() {
+    body.innerHTML = '<p class="mut">Loading...</p>'; await loadExtras(); body.innerHTML = '';
+    body.append(el('<p class="note">Duas (supplications) that appear in the Quran, grouped by what you need. The grouping is mine, so please check with a teacher how and when to use them. Tap one to practise it.</p>'));
+    for (const c of duasData) {
+      body.append(el(`<h2 style="margin:18px 0 4px">${esc(c.need)}</h2>`));
+      for (const it of c.items) {
+        const text = searchData[it.s][it.v - 1], done = S.best[key(it.s, it.v)] != null;
+        const r = el(`<button class="res"><b>${esc(index.surahs[it.s - 1].en)} ${it.s}:${it.v}</b>${done ? ' ✓' : ''}${it.note ? ' <span class="mut">· ' + esc(it.note) + '</span>' : ''}<br><span class="mut">${esc(snippet(text, []))}</span></button>`);
+        r.onclick = () => jump(it.s, it.v); body.append(r);
+      }
+    }
+  }
+  async function search(text) {
+    const m = text.trim().match(/^(\d{1,3})\s*[:.]\s*(\d{1,3})$/);
+    if (m) { const s = +m[1], v = +m[2]; body.innerHTML = ''; if (s >= 1 && s <= 114 && v >= 1 && v <= index.surahs[s - 1].count) { const r = el(`<button class="res"><b>Go to ${esc(index.surahs[s - 1].en)} ${s}:${v}</b></button>`); r.onclick = () => jump(s, v); body.append(r); } else body.append(el('<p class="mut">That chapter and verse does not exist.</p>')); return; }
+    body.innerHTML = '<p class="mut">Searching...</p>'; await loadExtras();
+    if (q.value.trim() !== text.trim()) return;
+    const words = text.toLowerCase().split(/\s+/).filter(Boolean); body.innerHTML = '';
+    const names = index.surahs.filter(s => s.en.toLowerCase().includes(text.trim().toLowerCase()) || s.meaning.toLowerCase().includes(text.trim().toLowerCase())).slice(0, 5);
+    for (const s of names) { const r = el(`<button class="res"><b>Chapter ${s.n}: ${esc(s.en)}</b> <span class="mut">(${esc(s.meaning)}) · ${s.count} verses</span></button>`); r.onclick = () => jump(s.n, firstUndone(s.n)); body.append(r); }
+    const hits = [];
+    for (let sn = 1; sn <= 114; sn++) { const arr = searchData[sn]; for (let i = 0; i < arr.length; i++) { const t = arr[i].toLowerCase(); if (words.every(w => t.includes(w))) hits.push([sn, i + 1]); } }
+    body.append(el(`<p class="mut">${hits.length} verse${hits.length === 1 ? '' : 's'} found${hits.length > 80 ? ' (showing the first 80, add more words to narrow it)' : ''}</p>`));
+    for (const [sn, v] of hits.slice(0, 80)) { const t = searchData[sn][v - 1]; const r = el(`<button class="res"><b>${esc(index.surahs[sn - 1].en)} ${sn}:${v}</b>${S.best[key(sn, v)] != null ? ' ✓' : ''}<br><span class="mut">${hl(snippet(t, words), words)}</span></button>`); r.onclick = () => jump(sn, v); body.append(r); }
+  }
+  function show() { if (q.value.trim().length >= 2) search(q.value); else if (tab === 'ch') chapters(); else duas(); }
+  ov.querySelector('#x').onclick = close; ov.onclick = e => { if (e.target === ov) close(); };
+  ov.querySelectorAll('.tab').forEach(t => t.onclick = () => { tab = t.dataset.t; ov.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === t)); q.value = ''; show(); });
+  q.oninput = () => { clearTimeout(timer); timer = setTimeout(show, 200); };
+  show();
 }
 
 // ---------- Palestinian sentences ----------
@@ -214,7 +275,7 @@ function palView(l) {
 
 async function main() {
   [lessonsData, index] = await Promise.all([fetch('lessons.json').then(r => r.json()), fetch('data/index.json').then(r => r.json())]);
-  if (params.has('test')) window.__test = { toMono16k, transcribe, judge, startWorker };
+  if (params.has('test')) window.__test = { toMono16k, transcribe, judge, startWorker, openPicker };
   render();
   if ('serviceWorker' in navigator && !params.has('stub')) navigator.serviceWorker.register('sw.js').catch(() => { });
   if (!params.has('stub')) setTimeout(() => { if (workerState === 'idle') startWorker().catch(() => { }); }, 1500);
