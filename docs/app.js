@@ -3,7 +3,7 @@ const $app = document.getElementById('app');
 const store = { get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch { } } };
 const MODELS = { base: ['Fast (smaller download, about 200 MB)', 'onnx-community/whisper-base'], small: ['Better (bigger download, more accurate)', 'onnx-community/whisper-small'] };
 const params = new URLSearchParams(location.search);
-let data, S = { model: store.get('model', 'base'), reciter: store.get('reciter', 'ar.husary'), speed: store.get('speed', 0.85), best: store.get('best', {}) };
+let data, S = { model: store.get('model', 'base'), plain: store.get('plain', true), reciter: store.get('reciter', '6'), speed: store.get('speed', 0.85), best: store.get('best', {}) };
 let worker, workerState = 'idle', pending = {}, nextId = 1;   // idle | loading | ready | error
 let progressText = '', lastError = '';
 
@@ -75,7 +75,7 @@ function settings() {
   <p class="mut">It downloads once and then works without internet. Your voice stays on your phone.</p>
   <label>Quran reciter</label><select id="r">${data.reciters.map(([k, n]) => `<option value="${k}" ${S.reciter === k ? 'selected' : ''}>${n}</option>`).join('')}</select>
   <label>Playback speed: <span id="sv">${S.speed}</span>x</label><input id="sp" type="range" min="0.5" max="1" step="0.05" value="${S.speed}">
-  <p class="note">Recitation audio is streamed from alquran.cloud / Islamic Network (free for personal and educational use). Please keep that credit.</p></div>`);
+  <p class="note">Words, timings and sounds come from the Quran.com API. Recitation audio is streamed from the EveryAyah / Quran Audio mirrors (free to listen; keep the credit). English translation: Sahih International.</p></div>`);
   root.querySelector('#b').onclick = () => go('home');
   root.querySelector('#m').onchange = e => { S.model = e.target.value; store.set('model', S.model); workerState = 'idle'; if (worker) worker.terminate(); };
   root.querySelector('#r').onchange = e => { S.reciter = e.target.value; store.set('reciter', S.reciter); };
@@ -85,12 +85,20 @@ function settings() {
 function lessonView(l) {
   const root = el(`<div><button class="back" id="b">‹ Back</button></div>`);
   root.querySelector('#b').onclick = () => go('home');
-  root.append(el(`<div class="card"><div class="ar">${esc(l.ar)}</div>${l.translit ? `<p class="mut" style="text-align:center">${esc(l.translit)}</p>` : ''}<p style="text-align:center">${esc(l.en)}</p>${l.ref ? `<p class="mut" style="text-align:center">Quran ${l.ref}</p>` : ''}</div>`));
+  const showPlain = S.plain;
+  const wordsHtml = l.words ? `<div class="words" id="words">${l.words.map((w, i) => `<div class="w" data-i="${i}"><span class="wa">${esc(w.ar)}</span>${showPlain ? `<span class="wt">${esc(w.plain)}</span>` : ''}</div>`).join('')}</div>` : `<div class="ar">${esc(l.ar)}</div>`;
+  root.append(el(`<div class="card">${wordsHtml}${l.translit ? `<p class="mut" style="text-align:center">${esc(l.translit)}</p>` : ''}<p style="text-align:center">${esc(l.en)}</p>${l.ref ? `<p class="mut" style="text-align:center">Quran ${l.ref}</p>` : ''}${l.words ? `<p class="mut" style="text-align:center"><label style="display:inline"><input type="checkbox" id="pl" ${showPlain ? 'checked' : ''}> show the sounds in English letters</label></p>` : ''}</div>`));
+  const plBox = root.querySelector('#pl'); if (plBox) plBox.onchange = e => { S.plain = e.target.checked; store.set('plain', S.plain); render(); };
   // listen
   const mine = store.get('myref_' + l.id, null);
-  const listen = el(`<div class="card"><div class="row"><b>1. Listen</b><span class="mut">${l.audio_ayah ? 'reciter' : 'your own recording'}</span></div><audio id="au" preload="none" style="display:none"></audio><div class="row" style="margin-top:10px"><button id="play">▶ Play</button>${l.audio_ayah ? '' : `<button class="alt" id="mk">● ${mine ? 'Record again' : 'Record the right way'}</button>`}</div>${l.audio_ayah ? '' : '<p class="mut">No recording of a Palestinian speaker is built in yet. Ask someone who speaks Palestinian to say it, and record it here once (it stays on your phone).</p>'}</div>`);
-  const au = listen.querySelector('#au'); const src = l.audio_ayah ? `https://cdn.islamic.network/quran/audio/128/${S.reciter}/${l.audio_ayah}.mp3` : mine;
-  listen.querySelector('#play').onclick = () => { if (!src) { alert('There is no recording yet. Use "Record the right way" first.'); return; } au.src = src; au.playbackRate = S.speed; au.preservesPitch = true; au.play(); };
+  const A = l.audio && (l.audio[S.reciter] || l.audio[Object.keys(l.audio)[0]]);
+  const listen = el(`<div class="card"><div class="row"><b>1. Listen</b><span class="mut">${A ? 'reciter' : 'your own recording'}</span></div><audio id="au" preload="none" style="display:none"></audio><div class="row" style="margin-top:10px"><button id="play">▶ Play</button>${A ? '' : `<button class="alt" id="mk">● ${mine ? 'Record again' : 'Record the right way'}</button>`}</div>${A ? '<p class="mut">The words change color as the reciter says them: pink is now, green is done.</p>' : '<p class="mut">No recording of a Palestinian speaker is built in yet. Ask someone who speaks Palestinian to say it, and record it here once (it stays on your phone).</p>'}</div>`);
+  const au = listen.querySelector('#au'); const src = A ? A.url : mine;
+  const setWords = ms => { root.querySelectorAll('.w').forEach((n, i) => { const seg = A.segs.find(s => s[0] === i + 1); n.classList.remove('now', 'done'); if (seg) { if (ms >= seg[2]) n.classList.add('done'); else if (ms >= seg[1]) n.classList.add('now'); } }); };
+  let raf = 0; const tick = () => { if (A) setWords(au.currentTime * 1000); if (!au.paused && !au.ended) raf = requestAnimationFrame(tick); };
+  au.onplay = () => { cancelAnimationFrame(raf); tick(); }; au.onended = () => { if (A) setWords(1e9); };
+  if (A) window.__setWords = setWords;
+  listen.querySelector('#play').onclick = () => { if (!src) { alert('There is no recording yet. Use "Record the right way" first.'); return; } if (A) setWords(-1); au.src = src; au.playbackRate = S.speed; au.preservesPitch = true; au.play(); };
   const mk = listen.querySelector('#mk'); if (mk) mk.onclick = async () => { try { if (!rec || rec.state !== 'recording') { await startRec(); mk.textContent = '■ Stop'; } else { const b = await stopRec(); store.set('myref_' + l.id, await blobToDataUrl(b)); render(); } } catch (e) { alert('The microphone did not start: ' + e.message); } };
   root.append(listen);
   // record

@@ -1,20 +1,20 @@
 {
  "reciters": [
   [
-   "ar.husary",
+   "6",
    "Husary (clear, steady)"
   ],
   [
-   "ar.husarymujawwad",
-   "Husary (slow, drawn out)"
+   "12",
+   "Husary (teaching, slow with repeats)"
   ],
   [
-   "ar.minshawi",
-   "Minshawi"
-  ],
-  [
-   "ar.alafasy",
+   "7",
    "Alafasy"
+  ],
+  [
+   "9",
+   "Minshawi"
   ]
  ],
  "lessons": [
@@ -23,8 +23,132 @@
    "kind": "quran",
    "title": "Al-Fatihah 1:1",
    "ref": "1:1",
-   "ar": "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ",
+   "ar": "بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ",
    "en": "In the name of Allah, the Entirely Merciful, the Especially Merciful.",
+   "words": [
+    {
+     "ar": "بِسْمِ",
+     "tr": "bis'mi",
+     "plain": "bis'mi"
+    },
+    {
+     "ar": "ٱللَّهِ",
+     "tr": "l-lahi",
+     "plain": "l-lahi"
+    },
+    {
+     "ar": "ٱلرَّحْمَـٰنِ",
+     "tr": "l-raḥmāni",
+     "plain": "l-rahmaani"
+    },
+    {
+     "ar": "ٱلرَّحِيمِ",
+     "tr": "l-raḥīmi",
+     "plain": "l-raheem"
+    }
+   ],
+   "audio": {
+    "6": {
+     "url": "https://mirrors.quranicaudio.com/everyayah/Husary_64kbps/001001.mp3",
+     "segs": [
+      [
+       1,
+       50,
+       510
+      ],
+      [
+       2,
+       520,
+       1180
+      ],
+      [
+       3,
+       1190,
+       2340
+      ],
+      [
+       4,
+       2350,
+       4480
+      ]
+     ]
+    },
+    "12": {
+     "url": "https://mirrors.quranicaudio.com/everyayah/Husary_Muallim_128kbps/001001.mp3",
+     "segs": [
+      [
+       1,
+       0,
+       820
+      ],
+      [
+       2,
+       830,
+       1520
+      ],
+      [
+       3,
+       1530,
+       2790
+      ],
+      [
+       4,
+       2800,
+       4240
+      ]
+     ]
+    },
+    "7": {
+     "url": "https://verses.quran.com/Alafasy/mp3/001001.mp3",
+     "segs": [
+      [
+       1,
+       60,
+       610
+      ],
+      [
+       2,
+       620,
+       1310
+      ],
+      [
+       3,
+       1320,
+       2450
+      ],
+      [
+       4,
+       2460,
+       5970
+      ]
+     ]
+    },
+    "9": {
+     "url": "https://verses.quran.com/Minshawi/Murattal/mp3/001001.mp3",
+     "segs": [
+      [
+       1,
+       600,
+       930
+      ],
+      [
+       2,
+       940,
+       1630
+      ],
+      [
+       3,
+       1640,
+       2730
+      ],
+      [
+       4,
+       2740,
+       4170
+      ]
+     ]
+    }
+   },
    "audio_ayah": 1
   },
   {
@@ -32,9 +156,823 @@
    "kind": "quran",
    "title": "Al-Fatihah 1:2",
    "ref": "1:2",
-   "ar": "ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ",
+   "ar": "ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَـٰلَمِينَ",
    "en": "[All] praise is [due] to Allah, Lord of the worlds -",
+   "words": [
+    {
+     "ar": "ٱلْحَمْدُ",
+     "tr": "al-ḥamdu",
+     "plain": "al-hamdu"
+    },
+    {
+     "ar": "لِلَّهِ",
+     "tr": "lillahi",
+     "plain": "lillahi"
+    },
+    {
+     "ar": "رَبِّ",
+     "tr": "rabbi",
+     "plain": "rabbi"
+    },
+    {
+     "ar": "ٱلْعَـٰلَمِينَ",
+     "tr": "l-ʿālamīna",
+     "plain": "l-'aalameen"
+    }
+   ],
+   "audio": {
+    "6": {
+     "url": "https://mirrors.quranicaudio.com/everyayah/Husary_64kbps/001002.mp3",
+     "segs": [
+      [
+       1,
+       700,
+       1410
+      ],
+      [
+       2,
+       1420,
+       2200
+      ],
+      [
+       3,
+       2210,
+       2880
+      ],
+      [
+       4,
+       2890,
+       5310
+      ]
+     ]
+    },
+    "12": {
+     "url": "https://mirrors.quranicaudio.com/everyayah/Husary_Muallim_128kbps/001002.mp3",
+     "segs": [
+      [
+       1,
+       250,
+       1060
+      ],
+      [
+       2,
+       1070,
+       1950
+      ],
+      [
+       3,
+       1960,
+       2660
+      ],
+      [
+       4,
+       2670,
+       4360
+      ]
+     ]
+    },
+    "7": {
+     "url": "https://verses.quran.com/Alafasy/mp3/001002.mp3",
+     "segs": [
+      [
+       1,
+       80,
+       960
+      ],
+      [
+       2,
+       970,
+       1800
+      ],
+      [
+       3,
+       1810,
+       2460
+      ],
+      [
+       4,
+       2470,
+       5140
+      ]
+     ]
+    },
+    "9": {
+     "url": "https://verses.quran.com/Minshawi/Murattal/mp3/001002.mp3",
+     "segs": [
+      [
+       1,
+       800,
+       1710
+      ],
+      [
+       2,
+       1720,
+       2630
+      ],
+      [
+       3,
+       2640,
+       3290
+      ],
+      [
+       4,
+       3300,
+       4890
+      ]
+     ]
+    }
+   },
    "audio_ayah": 2
+  },
+  {
+   "id": "q3",
+   "kind": "quran",
+   "title": "Al-Fatihah 1:3",
+   "ref": "1:3",
+   "ar": "ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ",
+   "en": "The Entirely Merciful, the Especially Merciful,",
+   "words": [
+    {
+     "ar": "ٱلرَّحْمَـٰنِ",
+     "tr": "al-raḥmāni",
+     "plain": "al-rahmaani"
+    },
+    {
+     "ar": "ٱلرَّحِيمِ",
+     "tr": "l-raḥīmi",
+     "plain": "l-raheem"
+    }
+   ],
+   "audio": {
+    "6": {
+     "url": "https://mirrors.quranicaudio.com/everyayah/Husary_64kbps/001003.mp3",
+     "segs": [
+      [
+       1,
+       150,
+       1400
+      ],
+      [
+       2,
+       1410,
+       3530
+      ]
+     ]
+    },
+    "12": {
+     "url": "https://mirrors.quranicaudio.com/everyayah/Husary_Muallim_128kbps/001003.mp3",
+     "segs": [
+      [
+       1,
+       250,
+       1570
+      ],
+      [
+       2,
+       1580,
+       2990
+      ]
+     ]
+    },
+    "7": {
+     "url": "https://verses.quran.com/Alafasy/mp3/001003.mp3",
+     "segs": [
+      [
+       1,
+       40,
+       1230
+      ],
+      [
+       2,
+       1240,
+       4160
+      ]
+     ]
+    },
+    "9": {
+     "url": "https://verses.quran.com/Minshawi/Murattal/mp3/001003.mp3",
+     "segs": [
+      [
+       1,
+       800,
+       2080
+      ],
+      [
+       2,
+       2090,
+       3700
+      ]
+     ]
+    }
+   },
+   "audio_ayah": 3
+  },
+  {
+   "id": "q4",
+   "kind": "quran",
+   "title": "Al-Fatihah 1:4",
+   "ref": "1:4",
+   "ar": "مَـٰلِكِ يَوْمِ ٱلدِّينِ",
+   "en": "Sovereign of the Day of Recompense.",
+   "words": [
+    {
+     "ar": "مَـٰلِكِ",
+     "tr": "māliki",
+     "plain": "maaliki"
+    },
+    {
+     "ar": "يَوْمِ",
+     "tr": "yawmi",
+     "plain": "yawmi"
+    },
+    {
+     "ar": "ٱلدِّينِ",
+     "tr": "l-dīni",
+     "plain": "l-deen"
+    }
+   ],
+   "audio": {
+    "6": {
+     "url": "https://mirrors.quranicaudio.com/everyayah/Husary_64kbps/001004.mp3",
+     "segs": [
+      [
+       1,
+       0,
+       1040
+      ],
+      [
+       2,
+       1050,
+       1660
+      ],
+      [
+       3,
+       1670,
+       3630
+      ]
+     ]
+    },
+    "12": {
+     "url": "https://mirrors.quranicaudio.com/everyayah/Husary_Muallim_128kbps/001004.mp3",
+     "segs": [
+      [
+       1,
+       250,
+       1160
+      ],
+      [
+       2,
+       1170,
+       1800
+      ],
+      [
+       3,
+       1810,
+       2980
+      ]
+     ]
+    },
+    "7": {
+     "url": "https://verses.quran.com/Alafasy/mp3/001004.mp3",
+     "segs": [
+      [
+       1,
+       60,
+       840
+      ],
+      [
+       2,
+       850,
+       1400
+      ],
+      [
+       3,
+       1410,
+       4280
+      ]
+     ]
+    },
+    "9": {
+     "url": "https://verses.quran.com/Minshawi/Murattal/mp3/001004.mp3",
+     "segs": [
+      [
+       1,
+       0,
+       1720
+      ],
+      [
+       2,
+       1730,
+       2320
+      ],
+      [
+       3,
+       2330,
+       3570
+      ]
+     ]
+    }
+   },
+   "audio_ayah": 4
+  },
+  {
+   "id": "q5",
+   "kind": "quran",
+   "title": "Al-Fatihah 1:5",
+   "ref": "1:5",
+   "ar": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+   "en": "It is You we worship and You we ask for help.",
+   "words": [
+    {
+     "ar": "إِيَّاكَ",
+     "tr": "iyyāka",
+     "plain": "iyyaaka"
+    },
+    {
+     "ar": "نَعْبُدُ",
+     "tr": "naʿbudu",
+     "plain": "na'budu"
+    },
+    {
+     "ar": "وَإِيَّاكَ",
+     "tr": "wa-iyyāka",
+     "plain": "wa-iyyaaka"
+    },
+    {
+     "ar": "نَسْتَعِينُ",
+     "tr": "nastaʿīnu",
+     "plain": "nasta'een"
+    }
+   ],
+   "audio": {
+    "6": {
+     "url": "https://mirrors.quranicaudio.com/everyayah/Husary_64kbps/001005.mp3",
+     "segs": [
+      [
+       1,
+       350,
+       1310
+      ],
+      [
+       2,
+       1320,
+       2210
+      ],
+      [
+       3,
+       2220,
+       3510
+      ],
+      [
+       4,
+       3520,
+       5900
+      ]
+     ]
+    },
+    "12": {
+     "url": "https://mirrors.quranicaudio.com/everyayah/Husary_Muallim_128kbps/001005.mp3",
+     "segs": [
+      [
+       1,
+       250,
+       1380
+      ],
+      [
+       2,
+       1390,
+       2320
+      ],
+      [
+       3,
+       2330,
+       3820
+      ],
+      [
+       4,
+       3830,
+       5430
+      ]
+     ]
+    },
+    "7": {
+     "url": "https://verses.quran.com/Alafasy/mp3/001005.mp3",
+     "segs": [
+      [
+       1,
+       30,
+       970
+      ],
+      [
+       2,
+       980,
+       1710
+      ],
+      [
+       3,
+       1720,
+       2870
+      ],
+      [
+       4,
+       2880,
+       6290
+      ]
+     ]
+    },
+    "9": {
+     "url": "https://verses.quran.com/Minshawi/Murattal/mp3/001005.mp3",
+     "segs": [
+      [
+       1,
+       1000,
+       2040
+      ],
+      [
+       2,
+       2050,
+       2860
+      ],
+      [
+       3,
+       2870,
+       4120
+      ],
+      [
+       4,
+       4130,
+       5570
+      ]
+     ]
+    }
+   },
+   "audio_ayah": 5
+  },
+  {
+   "id": "q6",
+   "kind": "quran",
+   "title": "Al-Fatihah 1:6",
+   "ref": "1:6",
+   "ar": "ٱهْدِنَا ٱلصِّرَٰطَ ٱلْمُسْتَقِيمَ",
+   "en": "Guide us to the straight path -",
+   "words": [
+    {
+     "ar": "ٱهْدِنَا",
+     "tr": "ih'dinā",
+     "plain": "ih'dinaa"
+    },
+    {
+     "ar": "ٱلصِّرَٰطَ",
+     "tr": "l-ṣirāṭa",
+     "plain": "l-siraata"
+    },
+    {
+     "ar": "ٱلْمُسْتَقِيمَ",
+     "tr": "l-mus'taqīma",
+     "plain": "l-mus'taqeem"
+    }
+   ],
+   "audio": {
+    "6": {
+     "url": "https://mirrors.quranicaudio.com/everyayah/Husary_64kbps/001006.mp3",
+     "segs": [
+      [
+       1,
+       300,
+       870
+      ],
+      [
+       2,
+       880,
+       1790
+      ],
+      [
+       3,
+       1800,
+       4480
+      ]
+     ]
+    },
+    "12": {
+     "url": "https://mirrors.quranicaudio.com/everyayah/Husary_Muallim_128kbps/001006.mp3",
+     "segs": [
+      [
+       1,
+       50,
+       780
+      ],
+      [
+       2,
+       790,
+       1940
+      ],
+      [
+       3,
+       1950,
+       3940
+      ]
+     ]
+    },
+    "7": {
+     "url": "https://verses.quran.com/Alafasy/mp3/001006.mp3",
+     "segs": [
+      [
+       1,
+       30,
+       670
+      ],
+      [
+       2,
+       680,
+       1630
+      ],
+      [
+       3,
+       1640,
+       5120
+      ]
+     ]
+    },
+    "9": {
+     "url": "https://verses.quran.com/Minshawi/Murattal/mp3/001006.mp3",
+     "segs": [
+      [
+       1,
+       900,
+       1490
+      ],
+      [
+       2,
+       1500,
+       2660
+      ],
+      [
+       3,
+       2670,
+       4390
+      ]
+     ]
+    }
+   },
+   "audio_ayah": 6
+  },
+  {
+   "id": "q7",
+   "kind": "quran",
+   "title": "Al-Fatihah 1:7",
+   "ref": "1:7",
+   "ar": "صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ عَلَيْهِمْ وَلَا ٱلضَّآلِّينَ",
+   "en": "The path of those upon whom You have bestowed favor, not of those who have evoked [Your] anger or of those who are astray.",
+   "words": [
+    {
+     "ar": "صِرَٰطَ",
+     "tr": "ṣirāṭa",
+     "plain": "siraata"
+    },
+    {
+     "ar": "ٱلَّذِينَ",
+     "tr": "alladhīna",
+     "plain": "alladheena"
+    },
+    {
+     "ar": "أَنْعَمْتَ",
+     "tr": "anʿamta",
+     "plain": "an'amta"
+    },
+    {
+     "ar": "عَلَيْهِمْ",
+     "tr": "ʿalayhim",
+     "plain": "'alayhim"
+    },
+    {
+     "ar": "غَيْرِ",
+     "tr": "ghayri",
+     "plain": "ghayri"
+    },
+    {
+     "ar": "ٱلْمَغْضُوبِ",
+     "tr": "l-maghḍūbi",
+     "plain": "l-maghdoobi"
+    },
+    {
+     "ar": "عَلَيْهِمْ",
+     "tr": "ʿalayhim",
+     "plain": "'alayhim"
+    },
+    {
+     "ar": "وَلَا",
+     "tr": "walā",
+     "plain": "walaa"
+    },
+    {
+     "ar": "ٱلضَّآلِّينَ",
+     "tr": "l-ḍālīna",
+     "plain": "l-daaleen"
+    }
+   ],
+   "audio": {
+    "6": {
+     "url": "https://mirrors.quranicaudio.com/everyayah/Husary_64kbps/001007.mp3",
+     "segs": [
+      [
+       1,
+       450,
+       1200
+      ],
+      [
+       2,
+       1210,
+       2110
+      ],
+      [
+       3,
+       2120,
+       3070
+      ],
+      [
+       4,
+       3080,
+       4220
+      ],
+      [
+       5,
+       4230,
+       4940
+      ],
+      [
+       6,
+       4950,
+       6200
+      ],
+      [
+       7,
+       6210,
+       7370
+      ],
+      [
+       8,
+       7380,
+       7690
+      ],
+      [
+       9,
+       7700,
+       13830
+      ]
+     ]
+    },
+    "12": {
+     "url": "https://mirrors.quranicaudio.com/everyayah/Husary_Muallim_128kbps/001007.mp3",
+     "segs": [
+      [
+       1,
+       450,
+       1050
+      ],
+      [
+       2,
+       1060,
+       2070
+      ],
+      [
+       3,
+       2080,
+       3160
+      ],
+      [
+       4,
+       3170,
+       4300
+      ],
+      [
+       5,
+       8400,
+       8700
+      ],
+      [
+       6,
+       8710,
+       10330
+      ],
+      [
+       7,
+       10340,
+       11500
+      ],
+      [
+       8,
+       11510,
+       11870
+      ],
+      [
+       9,
+       11880,
+       16640
+      ]
+     ]
+    },
+    "7": {
+     "url": "https://verses.quran.com/Alafasy/mp3/001007.mp3",
+     "segs": [
+      [
+       1,
+       30,
+       740
+      ],
+      [
+       2,
+       750,
+       1700
+      ],
+      [
+       3,
+       1710,
+       2620
+      ],
+      [
+       4,
+       2630,
+       3590
+      ],
+      [
+       5,
+       3600,
+       4210
+      ],
+      [
+       6,
+       4220,
+       5290
+      ],
+      [
+       7,
+       5300,
+       6320
+      ],
+      [
+       8,
+       6330,
+       6630
+      ],
+      [
+       9,
+       6640,
+       12320
+      ]
+     ]
+    },
+    "9": {
+     "url": "https://verses.quran.com/Minshawi/Murattal/mp3/001007.mp3",
+     "segs": [
+      [
+       1,
+       950,
+       1680
+      ],
+      [
+       2,
+       1690,
+       2760
+      ],
+      [
+       3,
+       2770,
+       3770
+      ],
+      [
+       4,
+       3780,
+       4900
+      ],
+      [
+       5,
+       4910,
+       5500
+      ],
+      [
+       6,
+       5510,
+       6780
+      ],
+      [
+       7,
+       6790,
+       7810
+      ],
+      [
+       8,
+       7820,
+       8290
+      ],
+      [
+       9,
+       8300,
+       10630
+      ]
+     ]
+    }
+   },
+   "audio_ayah": 7
   },
   {
    "id": "p1",
