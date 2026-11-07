@@ -22,15 +22,14 @@ if rows: synth_lines(rows)
 def load(p):
     w = wave.open(p); x = np.frombuffer(w.readframes(w.getnframes()), dtype='<i2').astype(np.float32) / 32768; sr = w.getframerate()
     if sr != SR:
-        import scipy.signal as ss; x = ss.resample_poly(x, SR, sr)
+        x = np.interp(np.linspace(0, len(x) - 1, int(len(x) * SR / sr)), np.arange(len(x)), x).astype(np.float32)
     if w.getnchannels() == 2: x = x[::2]
     return x
 def trim(x, pad=0.08):
     i = np.where(np.abs(x) > 0.01)[0]
     return x[max(0, i[0] - int(pad * SR)): i[-1] + int(pad * SR)] if len(i) else x
 def quiet(x):   # the same words, much lower and softer, like helping you say it
-    import scipy.signal as ss
-    b, a = ss.butter(2, 3200 / (SR / 2)); y = ss.lfilter(b, a, x) * 0.17
+    k = np.ones(5) / 5; y = np.convolve(x, k, mode='same') * 0.17   # a little softer (small moving average) and much quieter
     return y
 def gap(s): return (np.random.default_rng(1).standard_normal(int(s * SR)) * 10 ** (-60 / 20)).astype(np.float32)
 out = [gap(0.6), trim(load(f'{W}/en_intro.wav')), gap(1.0)]
