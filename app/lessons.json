@@ -1,0 +1,119 @@
+{
+ "reciters": [
+  [
+   "ar.husary",
+   "Husary (clear, steady)"
+  ],
+  [
+   "ar.husarymujawwad",
+   "Husary (slow, drawn out)"
+  ],
+  [
+   "ar.minshawi",
+   "Minshawi"
+  ],
+  [
+   "ar.alafasy",
+   "Alafasy"
+  ]
+ ],
+ "lessons": [
+  {
+   "id": "q1",
+   "kind": "quran",
+   "title": "Al-Fatihah 1:1",
+   "ref": "1:1",
+   "ar": "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ",
+   "en": "In the name of Allah, the Entirely Merciful, the Especially Merciful.",
+   "audio_ayah": 1
+  },
+  {
+   "id": "q2",
+   "kind": "quran",
+   "title": "Al-Fatihah 1:2",
+   "ref": "1:2",
+   "ar": "ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ",
+   "en": "[All] praise is [due] to Allah, Lord of the worlds -",
+   "audio_ayah": 2
+  },
+  {
+   "id": "p1",
+   "kind": "palestinian",
+   "title": "How are you?",
+   "ar": "كيفك؟",
+   "translit": "kifak / kifik?",
+   "en": "How are you?",
+   "accept": [
+    "كيف حالك",
+    "كيفك"
+   ],
+   "audio_ayah": null
+  },
+  {
+   "id": "p2",
+   "kind": "palestinian",
+   "title": "Good, thank God.",
+   "ar": "منيح، الحمد لله",
+   "translit": "mnīḥ, il-ḥamdulillah",
+   "en": "Good, thank God.",
+   "accept": [
+    "منيح الحمد لله",
+    "كويس الحمد لله",
+    "بخير الحمد لله"
+   ],
+   "audio_ayah": null
+  },
+  {
+   "id": "p3",
+   "kind": "palestinian",
+   "title": "What is your name?",
+   "ar": "شو اسمك؟",
+   "translit": "shu ismak / ismik?",
+   "en": "What is your name?",
+   "accept": [
+    "ما اسمك",
+    "شو اسمك"
+   ],
+   "audio_ayah": null
+  },
+  {
+   "id": "p4",
+   "kind": "palestinian",
+   "title": "I want coffee, please.",
+   "ar": "بدي قهوة، لو سمحت",
+   "translit": "biddi ahwe, law samaḥt",
+   "en": "I want coffee, please.",
+   "accept": [
+    "اريد قهوه لو سمحت",
+    "بدي قهوه لو سمحت"
+   ],
+   "audio_ayah": null
+  },
+  {
+   "id": "p5",
+   "kind": "palestinian",
+   "title": "Where is the bathroom?",
+   "ar": "وين الحمام؟",
+   "translit": "wayn il-ḥammām?",
+   "en": "Where is the bathroom?",
+   "accept": [
+    "اين الحمام",
+    "وين الحمام"
+   ],
+   "audio_ayah": null
+  },
+  {
+   "id": "p6",
+   "kind": "palestinian",
+   "title": "What's new with you?",
+   "ar": "شو أخبارك؟",
+   "translit": "shu akhbārak / akhbārik?",
+   "en": "What's new with you?",
+   "accept": [
+    "ما اخبارك",
+    "شو اخبارك"
+   ],
+   "audio_ayah": null
+  }
+ ]
+}

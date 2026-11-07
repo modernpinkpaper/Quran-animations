@@ -1,0 +1,12 @@
+import { judge, normalize, compare } from './scoring.js';
+import assert from 'node:assert';
+const L = { ar: 'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ' };
+let r = judge(L, 'بسم الله الرحمن الرحيم'); assert(r.score > 0.99, 'perfect'); console.log('perfect', r.score.toFixed(2));
+r = judge(L, 'بسم الله الرحمن'); assert(r.words[3].status === 'missing' && r.score < 0.85); console.log('missing last word', r.score.toFixed(2), r.words.map(w => w.status).join());
+r = judge(L, 'بسم الله الرحمان الرحم'); console.log('slightly off', r.score.toFixed(2), r.words.map(w => w.status + ':' + w.sim.toFixed(2)).join());
+assert(r.score > 0.6 && r.score < 1);
+r = judge(L, 'اشتركوا في القناة'); assert(r.score < 0.45); console.log('wrong', r.score.toFixed(2));
+r = judge(L, ''); assert(r.score === 0); console.log('empty ok');
+const P = { ar: 'كيفك؟', accept: ['كيف حالك'] }; r = judge(P, 'كيف حالك'); assert(r.score > 0.99); console.log('dialect accept', r.score.toFixed(2));
+r = judge({ ar: 'ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ' }, 'الحمد لله الرب أهل مين'); console.log('real heard sample', r.score.toFixed(2), r.words.map(w => w.exp + '->' + (w.heard || '-') + ':' + w.status).join(' | '));
+console.log('all tests passed');
