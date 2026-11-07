@@ -3,7 +3,7 @@ const $app = document.getElementById('app');
 const store = { get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch { } } };
 const MODELS = { base: ['Fast (smaller download, about 200 MB)', 'onnx-community/whisper-base'], small: ['Better (bigger download, more accurate)', 'onnx-community/whisper-small'] };
 const params = new URLSearchParams(location.search);
-let lessonsData, index, S = { model: store.get('model', 'base'), plain: store.get('plain', true), reciter: store.get('reciter', '6'), speed: store.get('speed', 0.85), best: store.get('best2', {}), pos: store.get('pos', null) };
+let lessonsData, index, S = { model: store.get('model', 'base'), plain: store.get('plain', true), reciter: store.get('reciter', '12'), speed: store.get('speed', 0.85), best: store.get('best2', {}), pos: store.get('pos', null) };
 const surahCache = {};
 let worker, workerState = 'idle', pending = {}, nextId = 1, progressText = '', lastError = '';
 
@@ -120,7 +120,7 @@ function settings() {
   const root = el(`<div><button class="back" id="b">‹ Back</button><h1>Settings</h1>
   <label>Speech checker</label><select id="m">${Object.entries(MODELS).map(([k, v]) => `<option value="${k}" ${S.model === k ? 'selected' : ''}>${v[0]}</option>`).join('')}</select>
   <p class="mut">It downloads once and then works without internet. Your voice stays on your phone.</p>
-  <label>Quran reciter</label><select id="r">${index.reciters.map(([k, n]) => `<option value="${k}" ${S.reciter === k ? 'selected' : ''}>${n}</option>`).join('')}</select>
+  <label>Quran reciter</label><p class="mut" style="margin:0 0 6px">Mujawwad is melodic, like singing. Murattal is plain and steady. Muallim means teaching: slow, plain, made for learners.</p><select id="r">${index.reciters.map(([k, n]) => `<option value="${k}" ${S.reciter === k ? 'selected' : ''}>${n}</option>`).join('')}</select>
   <label>Playback speed: <span id="sv">${S.speed}</span>x</label><input id="sp" type="range" min="0.5" max="1" step="0.05" value="${S.speed}">
   <p class="note"><b>Credits.</b> Verse text, word timings, sounds and chapter names: Quran.com API. Recitation audio: EveryAyah and Quran Audio mirrors. English meaning: Sahih International. These are for personal learning. Commercial use would need permission from the reciters and the translation's owners.</p></div>`);
   root.querySelector('#b').onclick = () => go({ name: 'home' });
@@ -182,7 +182,7 @@ function surahView(sd) {
   const showPlain = S.plain;
   const wordsHtml = `<div class="words">${V.w.map((w, i) => `<div class="w" data-i="${i}"><span class="wa">${esc(w[0])}</span>${showPlain ? `<span class="wt">${esc(w[1])}</span>` : ''}</div>`).join('')}</div>`;
   root.append(el(`<div class="card"><div class="row"><b>${esc(meta.en)} ${sn}:${vi}</b>${best != null ? `<span class="mut">best ${Math.round(best * 100)}% <button class="alt" id="clr" style="padding:6px 10px;font-size:14px">Clear</button></span>` : ''}</div>${wordsHtml}<p class="mut" style="text-align:center"><label style="display:inline"><input type="checkbox" id="pl" ${showPlain ? 'checked' : ''}> show the sounds in English letters</label></p></div>`));
-  const rid = index.reciters.some(r => r[0] === S.reciter) ? S.reciter : '6';
+  const rid = index.reciters.some(r => r[0] === S.reciter) ? S.reciter : '12';
   practice(root, { takeKey: key(sn, vi), meaning: V.en, ar: V.w.map(w => w[0]).join(' '), audioUrl: index.bases[rid] + pad3(sn) + pad3(vi) + '.mp3', timings: V.t[rid] || null,
     onScore: sc => { const b = S.best[key(sn, vi)]; if (b == null || sc > b) { S.best[key(sn, vi)] = sc; saveBest(); } } });
   root.append(el(`<div class="navbar"><button class="alt" id="prev" ${sn === 1 && vi === 1 ? 'disabled' : ''}>‹ Previous</button><button id="next" ${sn === 114 && vi === count ? 'disabled' : ''}>${vi === count && sn < 114 ? 'Next chapter ›' : 'Next ›'}</button></div>`));

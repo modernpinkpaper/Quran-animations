@@ -3,7 +3,7 @@
 # English meaning: Sahih International (from alquran.cloud, cached in /tmp/claude-0/quran/verses.json by the research step).
 import json, os, re, subprocess, sys, time
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'docs', 'data'); os.makedirs(OUT, exist_ok=True)
-RECS = [(6, 'Husary (clear, steady)'), (12, 'Husary (teaching, slow with repeats)'), (7, 'Alafasy'), (9, 'Minshawi')]
+RECS = [(12, 'Husary, teaching (plain, slow, no melody) - best for learning'), (6, 'Husary (plain, steady, little melody)'), (7, 'Alafasy (more tuneful)'), (9, 'Minshawi (more tuneful)')]
 def get(u, tries=4):
     for i in range(tries):
         r = subprocess.run(['curl', '-s', '--max-time', '60', u], capture_output=True, text=True)
