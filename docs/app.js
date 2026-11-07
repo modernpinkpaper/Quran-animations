@@ -59,6 +59,29 @@ async function toMono16k(blob) {
 }
 const blobToDataUrl = b => new Promise(r => { const f = new FileReader(); f.onload = () => r(f.result); f.readAsDataURL(b); });
 
+
+// ---------- my takes (your recordings, saved only on this phone) ----------
+const idb = () => new Promise((res, rej) => { const r = indexedDB.open('practice-takes', 1); r.onupgradeneeded = () => { const st = r.result.createObjectStore('takes', { keyPath: 'id', autoIncrement: true }); st.createIndex('k', 'k'); }; r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); });
+const tx = async (mode, fn) => { const db = await idb(); return new Promise((res, rej) => { const t = db.transaction('takes', mode), st = t.objectStore('takes'); const out = fn(st); t.oncomplete = () => res(out.result !== undefined ? out.result : undefined); t.onerror = () => rej(t.error); t.onabort = () => rej(t.error); }); };
+async function listTakes(k) { try { const all = await tx('readonly', st => st.index('k').getAll(k)); return (all || []).sort((a, b) => a.t - b.t); } catch { return []; } }
+async function saveTake(take) {
+  await tx('readwrite', st => st.add(take));
+  try { navigator.storage && navigator.storage.persist && navigator.storage.persist(); } catch { }
+  const all = await listTakes(take.k); const extra = all.length - 25;   // keep the newest 25 tries per verse
+  if (extra > 0) for (const o of all.slice(0, extra)) await tx('readwrite', st => st.delete(o.id));
+}
+const delTake = id => tx('readwrite', st => st.delete(id));
+const fmtDate = t => new Date(t).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+async function takesCard(k, box) {
+  const takes = await listTakes(k);
+  if (!takes.length) { box.innerHTML = ''; return; }
+  const trend = takes.slice(-8).map(t => Math.round(t.score * 100) + '%').join(' → ');
+  box.innerHTML = `<div class="card"><b>My takes</b><p class="mut">${takes.length} saved on this phone${takes.length > 1 ? '. Oldest to newest: ' + trend : ''}</p>${takes.slice().reverse().map(t => `<div class="row take" style="margin:8px 0"><span>${esc(fmtDate(t.t))} · <b>${Math.round(t.score * 100)}%</b></span><span><button class="alt tk" data-id="${t.id}" style="padding:8px 12px">▶</button> <button class="alt dl" data-id="${t.id}" style="padding:8px 12px">✕</button></span></div>`).join('')}<audio id="tkau" style="display:none"></audio></div>`;
+  const au = box.querySelector('#tkau');
+  box.querySelectorAll('.tk').forEach(b => b.onclick = () => { const t = takes.find(x => x.id === +b.dataset.id); if (!t || !t.blob) return; au.src = URL.createObjectURL(t.blob); au.play(); });
+  box.querySelectorAll('.dl').forEach(b => b.onclick = async () => { await delTake(+b.dataset.id); takesCard(k, box); });
+}
+
 // ---------- screens ----------
 let view = { name: 'home' }, result = null, busy = '', recording = false, resetArmed = false;
 function go(v) { view = v; result = null; busy = ''; resetArmed = false; render(); window.scrollTo(0, 0); }
@@ -125,15 +148,20 @@ function practice(root, cfg) {
   const card = el(`<div class="card"><b>2. Say it</b><p class="mut">Find a quiet place. Say it slowly. Tap again to stop.</p><button class="rec ${recording ? 'on' : ''}" id="rb">${recording ? '■ Stop and check' : '● Record'}</button><p class="mut" id="st">${esc(busy || (workerState === 'loading' ? progressText : ''))}</p></div>`);
   card.querySelector('#rb').onclick = async () => {
     try {
-      if (!recording) { if (!params.has('stub')) await startRec(); recording = true; result = null; render(); return; }
+      if (!recording) { if (!params.has('stub') || params.has('mic')) await startRec(); recording = true; result = null; render(); return; }
       recording = false; busy = 'Checking...'; render();
-      let heard, seconds = 0;
-      if (params.has('stub')) heard = await transcribe(null); else { const blob = await stopRec(); const m = await toMono16k(blob); seconds = m.seconds; heard = await transcribe(m.audio); }
-      result = judge({ ar: cfg.ar, accept: cfg.accept }, heard); result.seconds = seconds; busy = ''; cfg.onScore(result.score); render();
+      let heard, seconds = 0, blob = null;
+      if (!params.has('stub') || params.has('mic')) blob = await stopRec();
+      if (params.has('stub')) heard = await transcribe(null); else { const m = await toMono16k(blob); seconds = m.seconds; heard = await transcribe(m.audio); }
+      result = judge({ ar: cfg.ar, accept: cfg.accept }, heard); result.seconds = seconds; busy = ''; cfg.onScore(result.score);
+      if (cfg.takeKey && blob) { try { await saveTake({ k: cfg.takeKey, t: Date.now(), score: result.score, heard: result.heard, seconds, blob }); } catch (e) { result.saveError = true; } }
+      render();
     } catch (e) { recording = false; busy = ''; render(); alert('Something went wrong: ' + e.message); }
   };
   root.append(card);
   if (result) root.append(resultCard(result));
+  if (result && result.saveError) root.append(el('<p class="note">Your recording could not be saved on this phone (not enough space or the browser blocked it). The score was still kept.</p>'));
+  if (cfg.takeKey) { const box = el('<div id="takes"></div>'); root.append(box); takesCard(cfg.takeKey, box); }
 }
 function resultCard(r) {
   const pct = Math.round(r.score * 100);
@@ -158,7 +186,7 @@ function surahView(sd) {
   const wordsHtml = `<div class="words">${V.w.map((w, i) => `<div class="w" data-i="${i}"><span class="wa">${esc(w[0])}</span>${showPlain ? `<span class="wt">${esc(w[1])}</span>` : ''}</div>`).join('')}</div>`;
   root.append(el(`<div class="card"><div class="row"><b>${esc(meta.en)} ${sn}:${vi}</b>${best != null ? `<span class="mut">best ${Math.round(best * 100)}% <button class="alt" id="clr" style="padding:6px 10px;font-size:14px">Clear</button></span>` : ''}</div>${wordsHtml}<p class="mut" style="text-align:center"><label style="display:inline"><input type="checkbox" id="pl" ${showPlain ? 'checked' : ''}> show the sounds in English letters</label></p></div>`));
   const rid = index.reciters.some(r => r[0] === S.reciter) ? S.reciter : '6';
-  practice(root, { ar: V.w.map(w => w[0]).join(' '), audioUrl: index.bases[rid] + pad3(sn) + pad3(vi) + '.mp3', timings: V.t[rid] || null,
+  practice(root, { takeKey: key(sn, vi), ar: V.w.map(w => w[0]).join(' '), audioUrl: index.bases[rid] + pad3(sn) + pad3(vi) + '.mp3', timings: V.t[rid] || null,
     onScore: sc => { const b = S.best[key(sn, vi)]; if (b == null || sc > b) { S.best[key(sn, vi)] = sc; saveBest(); } } });
   root.append(el(`<div class="card"><b>Meaning</b><p>${esc(V.en)}</p><p class="mut">Sahih International (an English interpretation of the meaning, not the Quran itself).</p></div>`));
   root.append(el(`<div class="navbar"><button class="alt" id="prev" ${sn === 1 && vi === 1 ? 'disabled' : ''}>‹ Previous</button><button id="next" ${sn === 114 && vi === count ? 'disabled' : ''}>${vi === count && sn < 114 ? 'Next chapter ›' : 'Next ›'}</button></div>`));
@@ -179,7 +207,7 @@ function palView(l) {
   root.append(el('<button class="back" id="b">‹ Back</button>')); root.querySelector('#b').onclick = () => go({ name: 'home' });
   const best = S.best['p:' + l.id];
   root.append(el(`<div class="card"><div class="ar">${esc(l.ar)}</div><p class="mut" style="text-align:center">${esc(l.translit)}</p><p style="text-align:center">${esc(l.en)}</p>${best != null ? `<p class="mut" style="text-align:center">best ${Math.round(best * 100)}% <button class="alt" id="clr" style="padding:6px 10px;font-size:14px">Clear</button></p>` : ''}</div>`));
-  practice(root, { ar: l.ar, accept: l.accept, audioUrl: null, timings: null, myrefKey: 'myref_' + l.id, onScore: sc => { const b = S.best['p:' + l.id]; if (b == null || sc > b) { S.best['p:' + l.id] = sc; saveBest(); } } });
+  practice(root, { takeKey: 'p:' + l.id, ar: l.ar, accept: l.accept, audioUrl: null, timings: null, myrefKey: 'myref_' + l.id, onScore: sc => { const b = S.best['p:' + l.id]; if (b == null || sc > b) { S.best['p:' + l.id] = sc; saveBest(); } } });
   const clr = root.querySelector('#clr'); if (clr) clr.onclick = () => { delete S.best['p:' + l.id]; saveBest(); result = null; render(); };
   return root;
 }

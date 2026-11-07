@@ -10,3 +10,4 @@ Static web app (no server). The WHOLE Quran (114 chapters, `data/s1.json`..`s114
 - Hosting: any static host (GitHub Pages needs a public repo or a paid plan, Netlify, Cloudflare Pages). Must be https for the microphone.
 
 - Commercial use: NOT cleared. The verse text, the reciters' recordings and the Sahih International translation have separate terms; for personal learning only. Check each before selling or advertising.
+- My takes: every recording you make is saved ON THE PHONE ONLY (IndexedDB, newest 25 per verse), with its score and date; play or delete each one; the older-to-newer trend shows how you progressed. Clearing a score does not delete the recordings. Safari can delete site data after about 7 days without use unless the app is added to the Home Screen.
